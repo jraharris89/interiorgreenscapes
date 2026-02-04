@@ -7,18 +7,10 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-restoration: manual;
   }
 
   body {
     @apply font-body text-gray-800 antialiased;
-    scroll-restoration: manual;
-  }
-
-  /* Ensure page starts at top */
-  html,
-  body {
-    scroll-top: 0;
   }
 }
 
