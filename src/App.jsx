@@ -1,16 +1,16 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import ServicesPage from './pages/ServicesPage';
-import PortfolioPage from './pages/PortfolioPage';
-import AboutPage from './pages/AboutPage';
-import ContactPage from './pages/ContactPage';
-import ScrollToTop from './components/ScrollToTop';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import ServicesPage from "./pages/ServicesPage";
+import PortfolioPage from "./pages/PortfolioPage";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/interiorgreenscapes">
       <ScrollToTop />
       <div className="min-h-screen flex flex-col">
         <Header />

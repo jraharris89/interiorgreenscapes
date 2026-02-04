@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -7,10 +7,18 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-restoration: manual;
   }
 
   body {
     @apply font-body text-gray-800 antialiased;
+    scroll-restoration: manual;
+  }
+
+  /* Ensure page starts at top */
+  html,
+  body {
+    scroll-top: 0;
   }
 }
 
