@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Leaf, Phone, Mail, MapPin, Facebook, Instagram, ArrowUp } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Instagram, ArrowUp } from 'lucide-react';
+import { analytics } from '../utils/analytics';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -21,7 +22,7 @@ const Footer = () => {
     'Green Walls',
     'Atrium Design',
     'Holiday Decorations',
-    'Silk & Fresh Florals',
+    'Fresh Florals',
     'Plant Maintenance',
   ];
 
@@ -33,12 +34,14 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-sage-400 to-sage-500 rounded-full flex items-center justify-center">
-                <Leaf className="w-7 h-7 text-white" />
-              </div>
+              <img
+                src={`${import.meta.env.BASE_URL}images/logo.png`}
+                alt="Interior Greenscapes"
+                className="w-10 h-10 object-contain"
+              />
               <div>
-                <h3 className="font-display text-xl font-semibold">Interior Greenscapes</h3>
-                <p className="text-sage-400 text-xs">Since 1995</p>
+                <span className="font-copperplate text-sm tracking-widest uppercase block text-right leading-none">Interior</span>
+                <span className="font-script text-2xl block -mt-1 leading-none">Greenscapes</span>
               </div>
             </Link>
             <p className="text-gray-400 leading-relaxed mb-6">
@@ -50,6 +53,7 @@ const Footer = () => {
                 href="https://facebook.com/interiorgreenscapesboise"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => analytics.socialClick('facebook')}
                 className="w-10 h-10 bg-forest-800 rounded-lg flex items-center justify-center hover:bg-sage-500 transition-colors"
               >
                 <Facebook className="w-5 h-5" />
@@ -58,6 +62,7 @@ const Footer = () => {
                 href="https://instagram.com/interiorgreenscapesboise"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => analytics.socialClick('instagram')}
                 className="w-10 h-10 bg-forest-800 rounded-lg flex items-center justify-center hover:bg-sage-500 transition-colors"
               >
                 <Instagram className="w-5 h-5" />
@@ -113,6 +118,7 @@ const Footer = () => {
               <li>
                 <a
                   href="tel:2088712588"
+                  onClick={() => analytics.phoneClick()}
                   className="flex items-center space-x-3 text-gray-400 hover:text-sage-400 transition-colors"
                 >
                   <Phone className="w-5 h-5 text-sage-400" />
@@ -122,6 +128,7 @@ const Footer = () => {
               <li>
                 <a
                   href="mailto:info@interiorgreenscapes.com"
+                  onClick={() => analytics.emailClick()}
                   className="flex items-center space-x-3 text-gray-400 hover:text-sage-400 transition-colors"
                 >
                   <Mail className="w-5 h-5 text-sage-400" />

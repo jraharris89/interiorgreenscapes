@@ -6,12 +6,20 @@ import ServicesPage from "./pages/ServicesPage";
 import PortfolioPage from "./pages/PortfolioPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
+import IconSandbox from "./pages/IconSandbox";
 import ScrollToTop from "./components/ScrollToTop";
+import usePageTracking from "./hooks/usePageTracking";
+
+function PageTracker() {
+  usePageTracking();
+  return null;
+}
 
 function App() {
   return (
-    <Router basename="/interiorgreenscapes">
+    <Router basename={import.meta.env.BASE_URL}>
       <ScrollToTop />
+      <PageTracker />
       <div className="min-h-screen flex flex-col">
         <Header />
         <div className="flex-grow">
@@ -21,6 +29,7 @@ function App() {
             <Route path="/portfolio" element={<PortfolioPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/icon-sandbox" element={<IconSandbox />} />
           </Routes>
         </div>
         <Footer />

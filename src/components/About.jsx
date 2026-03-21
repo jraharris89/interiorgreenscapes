@@ -1,5 +1,11 @@
 import { Link } from 'react-router-dom';
-import { CheckCircle, Leaf, Users, Award } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
+import {
+  IconSustain,
+  IconExpertise,
+  IconQuality,
+  OrganicIcon,
+} from './icons/BotanicalIcons';
 
 const features = [
   'Licensed and insured professionals',
@@ -12,14 +18,14 @@ const features = [
 
 const About = ({ isFullPage = false }) => {
   return (
-    <section className={`py-24 ${isFullPage ? 'pt-32' : ''} bg-white`}>
+    <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Image Side */}
           <div className="relative">
             <div className="relative z-10">
               <img
-                src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80"
+                src={`${import.meta.env.BASE_URL}images/tropical-arrangement-bowl.jpg`}
                 alt="Interior plant design"
                 className="rounded-2xl shadow-2xl"
               />
@@ -28,28 +34,18 @@ const About = ({ isFullPage = false }) => {
             <div className="absolute -bottom-6 -right-6 w-72 h-72 bg-sage-200 rounded-2xl -z-10" />
             <div className="absolute -top-6 -left-6 w-32 h-32 bg-forest-200 rounded-2xl -z-10" />
 
-            {/* Floating Stats Card */}
-            <div className="absolute -bottom-8 -right-8 bg-white rounded-2xl shadow-xl p-6 z-20">
-              <div className="flex items-center space-x-4">
-                <div className="w-14 h-14 bg-sage-100 rounded-full flex items-center justify-center">
-                  <Award className="w-7 h-7 text-sage-500" />
-                </div>
-                <div>
-                  <p className="text-3xl font-bold text-forest-800">30+</p>
-                  <p className="text-gray-500">Years of Excellence</p>
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* Content Side */}
           <div>
-            <span className="inline-block px-4 py-1 bg-sage-100 text-sage-600 rounded-full text-sm font-medium mb-4">
-              About Us
-            </span>
-            <h2 className="section-heading text-left">
-              Creating Green Spaces That Inspire
-            </h2>
+            {!isFullPage && <>
+              <span className="inline-block px-4 py-1 bg-sage-100 text-sage-600 rounded-full text-sm font-medium mb-4">
+                About Us
+              </span>
+              <h2 className="section-heading text-left">
+                Creating Green Spaces That Inspire
+              </h2>
+            </>}
             <p className="text-lg text-gray-600 mb-6 leading-relaxed">
               Since 1995, Interior Greenscapes has been the Treasure Valley's premier
               provider of interior plantscaping services. Our team of experienced
@@ -98,8 +94,8 @@ const About = ({ isFullPage = false }) => {
 
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="p-6 bg-sage-50 rounded-2xl">
-                  <div className="w-14 h-14 bg-sage-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Leaf className="w-7 h-7 text-sage-500" />
+                  <div className="flex justify-center mb-4">
+                    <OrganicIcon Icon={IconSustain} size="w-14 h-14" iconSize="w-8 h-8" />
                   </div>
                   <h4 className="font-display text-xl font-semibold text-forest-800 mb-2">
                     Sustainability
@@ -109,8 +105,8 @@ const About = ({ isFullPage = false }) => {
                   </p>
                 </div>
                 <div className="p-6 bg-sage-50 rounded-2xl">
-                  <div className="w-14 h-14 bg-sage-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Users className="w-7 h-7 text-sage-500" />
+                  <div className="flex justify-center mb-4">
+                    <OrganicIcon Icon={IconExpertise} size="w-14 h-14" iconSize="w-8 h-8" />
                   </div>
                   <h4 className="font-display text-xl font-semibold text-forest-800 mb-2">
                     Expertise
@@ -120,8 +116,8 @@ const About = ({ isFullPage = false }) => {
                   </p>
                 </div>
                 <div className="p-6 bg-sage-50 rounded-2xl">
-                  <div className="w-14 h-14 bg-sage-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Award className="w-7 h-7 text-sage-500" />
+                  <div className="flex justify-center mb-4">
+                    <OrganicIcon Icon={IconQuality} size="w-14 h-14" iconSize="w-8 h-8" />
                   </div>
                   <h4 className="font-display text-xl font-semibold text-forest-800 mb-2">
                     Quality

@@ -1,56 +1,57 @@
 import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import {
-  Leaf,
-  Building2,
-  Snowflake,
-  Palette,
-  Wrench,
-  Flower2,
-  ArrowRight,
-} from 'lucide-react';
+  IconPlantscape,
+  IconGreenWall,
+  IconAtrium,
+  IconHoliday,
+  IconFlorals,
+  IconMaintenance,
+  OrganicIcon,
+} from './icons/BotanicalIcons';
 
 const services = [
   {
-    icon: Leaf,
+    icon: IconPlantscape,
     title: 'Interior Plantscaping',
     description:
       'Custom plant designs that transform your indoor spaces into vibrant, living environments.',
-    image: 'https://images.unsplash.com/photo-1463320726281-696a485928c7?auto=format&fit=crop&w=800&q=80',
+    image: `${import.meta.env.BASE_URL}images/plantscaping-lobby.jpg`,
   },
   {
-    icon: Building2,
+    icon: IconGreenWall,
     title: 'Green Walls & Living Walls',
     description:
       'Stunning vertical gardens that make a bold statement while improving air quality.',
-    image: 'https://images.unsplash.com/photo-1534889156217-d643df14f14a?auto=format&fit=crop&w=800&q=80',
+    image: `${import.meta.env.BASE_URL}images/living-wall-pattern.jpg`,
   },
   {
-    icon: Palette,
+    icon: IconAtrium,
     title: 'Large Atrium Design',
     description:
       'Dramatic installations for lobbies, atriums, and large commercial spaces.',
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80',
+    image: `${import.meta.env.BASE_URL}images/atrium-tree-grand.jpg`,
   },
   {
-    icon: Snowflake,
+    icon: IconHoliday,
     title: 'Holiday Decorations',
     description:
       'Seasonal displays and festive installations that delight customers and employees.',
-    image: 'https://images.unsplash.com/photo-1512389142860-9c449e58a814?auto=format&fit=crop&w=800&q=80',
+    image: `${import.meta.env.BASE_URL}images/indoor-garden-holiday.jpg`,
   },
   {
-    icon: Flower2,
-    title: 'Silk & Fresh Florals',
+    icon: IconFlorals,
+    title: 'Fresh Florals',
     description:
-      'Beautiful arrangements using premium silk replicas or fresh-cut flowers.',
-    image: 'https://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=800&q=80',
+      'Beautiful fresh-cut flower arrangements and weekly delivery programs for lasting elegance.',
+    image: `${import.meta.env.BASE_URL}images/floral-anthurium.jpg`,
   },
   {
-    icon: Wrench,
+    icon: IconMaintenance,
     title: 'Plant Maintenance',
     description:
       'Professional ongoing care to keep your plants healthy and thriving year-round.',
-    image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=800&q=80',
+    image: `${import.meta.env.BASE_URL}images/planted-benches-garden.jpg`,
   },
 ];
 
@@ -60,8 +61,8 @@ const Services = ({ showAll = false }) => {
   return (
     <section className="py-24 bg-gradient-to-b from-white to-sage-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
+        {/* Section Header — hidden when page already has a hero */}
+        {!showAll && <div className="text-center mb-16">
           <span className="inline-block px-4 py-1 bg-sage-100 text-sage-600 rounded-full text-sm font-medium mb-4">
             What We Do
           </span>
@@ -70,11 +71,11 @@ const Services = ({ showAll = false }) => {
             From concept to installation and ongoing maintenance, we provide
             comprehensive plantscaping solutions for any space.
           </p>
-        </div>
+        </div>}
 
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {displayedServices.map((service, index) => (
+          {displayedServices.map((service) => (
             <div
               key={service.title}
               className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
@@ -86,13 +87,11 @@ const Services = ({ showAll = false }) => {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-forest-900/60 to-transparent" />
-                <div className="absolute bottom-4 left-4">
-                  <div className="w-12 h-12 bg-white/90 backdrop-blur-sm rounded-xl flex items-center justify-center">
-                    <service.icon className="w-6 h-6 text-sage-500" />
-                  </div>
-                </div>
               </div>
               <div className="p-6">
+                <div className="mb-4 -mt-12 relative z-10">
+                  <OrganicIcon Icon={service.icon} size="w-14 h-14" iconSize="w-8 h-8" />
+                </div>
                 <h3 className="text-xl font-display font-semibold text-forest-800 mb-3">
                   {service.title}
                 </h3>

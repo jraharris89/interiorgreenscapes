@@ -1,78 +1,95 @@
-import { useState } from 'react';
-import { X, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
+import { useState } from "react";
+import { X, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 
 const projects = [
   {
     id: 1,
-    title: 'Corporate Office Atrium',
-    category: 'Commercial',
-    description: 'A stunning multi-story atrium featuring tropical plants and a living wall.',
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
+    title: "Elevating First Impressions",
+    category: "Commercial",
+    description:
+      "A stunning multi-story atrium featuring tropical plants and a living wall.",
+    image: `${import.meta.env.BASE_URL}images/atrium-overhead-wide.jpg`,
   },
   {
     id: 2,
-    title: 'Medical Center Lobby',
-    category: 'Healthcare',
-    description: 'Calming green spaces designed to reduce patient anxiety and improve well-being.',
-    image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=80',
+    title: "Fostering Healing Environments",
+    category: "Healthcare",
+    description:
+      "Calming green spaces designed to reduce patient anxiety and improve well-being.",
+    image: `${import.meta.env.BASE_URL}images/living-wall-lobby.jpg`,
   },
   {
     id: 3,
-    title: 'Restaurant Living Wall',
-    category: 'Hospitality',
-    description: 'A dramatic vertical garden creating an unforgettable dining atmosphere.',
-    image: 'https://images.unsplash.com/photo-1534889156217-d643df14f14a?auto=format&fit=crop&w=1200&q=80',
+    title: "Creating Unforgettable Atmospheres",
+    category: "Hospitality",
+    description:
+      "A dramatic vertical garden creating an unforgettable dining atmosphere.",
+    image: `${import.meta.env.BASE_URL}images/living-wall-large.jpg`,
   },
   {
     id: 4,
-    title: 'Tech Startup Workspace',
-    category: 'Commercial',
-    description: 'Biophilic design elements throughout an innovative tech company headquarters.',
-    image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80',
+    title: "Inspiring Innovative Workspaces",
+    category: "Commercial",
+    description:
+      "Biophilic design elements throughout an innovative tech company headquarters.",
+    image: `${import.meta.env.BASE_URL}images/indoor-garden-seating.jpg`,
   },
   {
     id: 5,
-    title: 'Luxury Hotel Lobby',
-    category: 'Hospitality',
-    description: 'Elegant tropical installations welcoming guests in grand style.',
-    image: 'https://images.unsplash.com/photo-1545241047-6083a3684587?auto=format&fit=crop&w=1200&q=80',
+    title: "Welcoming With Grand Elegance",
+    category: "Hospitality",
+    description:
+      "Elegant tropical installations welcoming guests in grand style.",
+    image: `${import.meta.env.BASE_URL}images/atrium-tropical-seating.jpg`,
   },
   {
     id: 6,
-    title: 'Holiday Display',
-    category: 'Seasonal',
-    description: 'Festive seasonal decorations that delight visitors during the holidays.',
-    image: 'https://images.unsplash.com/photo-1512389142860-9c449e58a814?auto=format&fit=crop&w=1200&q=80',
+    title: "Delivering Seasonal Magic",
+    category: "Seasonal",
+    description:
+      "Festive seasonal decorations that delight visitors during the holidays.",
+    image: `${import.meta.env.BASE_URL}images/atrium-holiday.jpg`,
   },
   {
     id: 7,
-    title: 'Residential Garden Room',
-    category: 'Residential',
-    description: 'A personal indoor oasis bringing nature into everyday living.',
-    image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1200&q=80',
+    title: "Designing Tranquil Retreats",
+    category: "Residential",
+    description:
+      "A tranquil indoor water feature surrounded by lush tropical plantings.",
+    image: `${import.meta.env.BASE_URL}images/water-feature-rocks.jpg`,
   },
   {
     id: 8,
-    title: 'Bank Headquarters',
-    category: 'Commercial',
-    description: 'Professional plantscaping enhancing a prestigious financial institution.',
-    image: 'https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=1200&q=80',
+    title: "Enhancing Professional Prestige",
+    category: "Commercial",
+    description:
+      "Professional plantscaping enhancing a prestigious financial institution.",
+    image: `${import.meta.env.BASE_URL}images/atrium-overhead-trees.jpg`,
   },
 ];
 
-const categories = ['All', 'Commercial', 'Hospitality', 'Healthcare', 'Residential', 'Seasonal'];
+const categories = [
+  "All",
+  "Commercial",
+  "Hospitality",
+  "Healthcare",
+  "Residential",
+  "Seasonal",
+];
 
 const Portfolio = ({ isFullPage = false }) => {
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const filteredProjects =
-    selectedCategory === 'All'
+    selectedCategory === "All"
       ? projects
       : projects.filter((p) => p.category === selectedCategory);
 
-  const displayedProjects = isFullPage ? filteredProjects : filteredProjects.slice(0, 4);
+  const displayedProjects = isFullPage
+    ? filteredProjects
+    : filteredProjects.slice(0, 4);
 
   const openLightbox = (index) => {
     setCurrentIndex(index);
@@ -84,27 +101,31 @@ const Portfolio = ({ isFullPage = false }) => {
   };
 
   const navigate = (direction) => {
-    if (direction === 'prev') {
-      setCurrentIndex((prev) => (prev === 0 ? filteredProjects.length - 1 : prev - 1));
+    if (direction === "prev") {
+      setCurrentIndex((prev) =>
+        prev === 0 ? filteredProjects.length - 1 : prev - 1,
+      );
     } else {
-      setCurrentIndex((prev) => (prev === filteredProjects.length - 1 ? 0 : prev + 1));
+      setCurrentIndex((prev) =>
+        prev === filteredProjects.length - 1 ? 0 : prev + 1,
+      );
     }
   };
 
   return (
-    <section className={`py-24 ${isFullPage ? 'pt-32' : ''} bg-sage-50`}>
+    <section className="py-24 bg-sage-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-12">
+        {/* Section Header — hidden when page already has a hero */}
+        {!isFullPage && <div className="text-center mb-12">
           <span className="inline-block px-4 py-1 bg-sage-200 text-sage-700 rounded-full text-sm font-medium mb-4">
             Our Work
           </span>
           <h2 className="section-heading">Project Portfolio</h2>
           <p className="section-subheading">
-            Explore our diverse collection of interior plantscaping projects across
-            the Treasure Valley.
+            Explore our diverse collection of interior plantscaping projects
+            across the Treasure Valley.
           </p>
-        </div>
+        </div>}
 
         {/* Category Filter (only on full page) */}
         {isFullPage && (
@@ -115,8 +136,8 @@ const Portfolio = ({ isFullPage = false }) => {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-5 py-2 rounded-full font-medium transition-all duration-300 ${
                   selectedCategory === category
-                    ? 'bg-sage-400 text-white shadow-lg'
-                    : 'bg-white text-gray-600 hover:bg-sage-100'
+                    ? "bg-sage-400 text-white shadow-lg"
+                    : "bg-white text-gray-600 hover:bg-sage-100"
                 }`}
               >
                 {category}
@@ -179,7 +200,7 @@ const Portfolio = ({ isFullPage = false }) => {
           </button>
 
           <button
-            onClick={() => navigate('prev')}
+            onClick={() => navigate("prev")}
             className="absolute left-6 text-white/60 hover:text-white transition-colors"
           >
             <ChevronLeft className="w-10 h-10" />
@@ -205,7 +226,7 @@ const Portfolio = ({ isFullPage = false }) => {
           </div>
 
           <button
-            onClick={() => navigate('next')}
+            onClick={() => navigate("next")}
             className="absolute right-6 text-white/60 hover:text-white transition-colors"
           >
             <ChevronRight className="w-10 h-10" />
@@ -218,7 +239,7 @@ const Portfolio = ({ isFullPage = false }) => {
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
                 className={`w-2 h-2 rounded-full transition-all ${
-                  idx === currentIndex ? 'bg-sage-400 w-6' : 'bg-white/30'
+                  idx === currentIndex ? "bg-sage-400 w-6" : "bg-white/30"
                 }`}
               />
             ))}

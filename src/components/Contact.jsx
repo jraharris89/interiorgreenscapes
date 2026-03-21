@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import {
   MapPin,
   Phone,
@@ -9,6 +9,7 @@ import {
   Facebook,
   Instagram,
 } from 'lucide-react';
+import { analytics } from '../utils/analytics';
 
 const Contact = ({ isFullPage = false }) => {
   const [formData, setFormData] = useState({
@@ -19,6 +20,9 @@ const Contact = ({ isFullPage = false }) => {
     service: '',
     message: '',
   });
+  const [honeypot, setHoneypot] = useState('');
+  const formLoadTime = useRef(0);
+  useEffect(() => { formLoadTime.current = Date.now(); }, []);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -28,7 +32,16 @@ const Contact = ({ isFullPage = false }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Bot protection: honeypot field should be empty
+    if (honeypot) return;
+
+    // Bot protection: form submitted too quickly (< 3 seconds = likely bot)
+    const elapsed = Date.now() - formLoadTime.current;
+    if (elapsed < 3000) return;
+
     setIsSubmitting(true);
+    analytics.formSubmit(formData.service);
     // Simulate form submission
     await new Promise((resolve) => setTimeout(resolve, 1500));
     setIsSubmitting(false);
@@ -65,10 +78,10 @@ const Contact = ({ isFullPage = false }) => {
   ];
 
   return (
-    <section className={`py-24 ${isFullPage ? 'pt-32' : ''} bg-white`}>
+    <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
+        {/* Section Header — hidden when page already has a hero */}
+        {!isFullPage && <div className="text-center mb-16">
           <span className="inline-block px-4 py-1 bg-sage-100 text-sage-600 rounded-full text-sm font-medium mb-4">
             Get In Touch
           </span>
@@ -77,7 +90,7 @@ const Contact = ({ isFullPage = false }) => {
             Ready to transform your space? We'd love to hear from you. Get in touch
             for a free consultation.
           </p>
-        </div>
+        </div>}
 
         <div className="grid lg:grid-cols-5 gap-12">
           {/* Contact Info */}
@@ -95,6 +108,7 @@ const Contact = ({ isFullPage = false }) => {
                   {item.link ? (
                     <a
                       href={item.link}
+                      onClick={() => item.title === 'Phone' ? analytics.phoneClick() : analytics.emailClick()}
                       className="text-sage-600 hover:text-sage-700 font-medium"
                     >
                       {item.content}
@@ -115,6 +129,7 @@ const Contact = ({ isFullPage = false }) => {
                   href="https://facebook.com/interiorgreenscapesboise"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => analytics.socialClick('facebook')}
                   className="w-12 h-12 bg-sage-100 rounded-xl flex items-center justify-center hover:bg-sage-200 transition-colors"
                 >
                   <Facebook className="w-6 h-6 text-sage-600" />
@@ -123,6 +138,7 @@ const Contact = ({ isFullPage = false }) => {
                   href="https://instagram.com/interiorgreenscapesboise"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => analytics.socialClick('instagram')}
                   className="w-12 h-12 bg-sage-100 rounded-xl flex items-center justify-center hover:bg-sage-200 transition-colors"
                 >
                   <Instagram className="w-6 h-6 text-sage-600" />
@@ -164,6 +180,19 @@ const Contact = ({ isFullPage = false }) => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Honeypot field — hidden from real users, bots will fill it */}
+                  <div className="absolute -left-[9999px]" aria-hidden="true">
+                    <label htmlFor="website">Website</label>
+                    <input
+                      type="text"
+                      id="website"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                    />
+                  </div>
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">

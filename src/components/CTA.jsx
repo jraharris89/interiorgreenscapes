@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Leaf } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { IconSustain } from './icons/BotanicalIcons';
 
 const CTA = () => {
   return (
@@ -9,7 +10,10 @@ const CTA = () => {
         <div className="absolute top-10 left-10 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
         <div className="absolute bottom-10 right-10 w-96 h-96 bg-forest-500/20 rounded-full blur-3xl" />
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <Leaf className="w-[600px] h-[600px] text-white/5" />
+          <IconSustain
+            className="w-[600px] h-[600px] text-white/5"
+            style={{ "--icon-fill": "none", "--icon-accent": "none" }}
+          />
         </div>
       </div>
 
