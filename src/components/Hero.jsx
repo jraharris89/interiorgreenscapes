@@ -1,9 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import {
   IconQuality,
   IconPlantscape,
   IconExpertise,
-} from './icons/BotanicalIcons';
+} from "./icons/BotanicalIcons";
 
 const Hero = () => {
   return (
@@ -25,29 +25,18 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="animate-fade-in-up">
-          <span className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-sage-200 text-sm font-medium mb-8">
-            <IconPlantscape
-              className="w-4 h-4 mr-2"
-              style={{ "--icon-fill": "none", "--icon-accent": "none" }}
-            />
-            Transforming Spaces Since 1995
-          </span>
-
-          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-medium text-white mb-6 leading-tight mt-8">
             Bring Nature
             <span className="block text-sage-300">Into Your Space</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto mb-10 leading-relaxed">
-            Professional interior plantscaping and green wall design for commercial
-            and residential spaces throughout the Treasure Valley.
+          <p className="text-xl md:text-xl text-gray-200 max-w-3xl mx-auto mb-10 leading-relaxed">
+            Professional interior plantscaping and green wall design for
+            commercial and residential spaces throughout the Treasure Valley.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Link
-              to="/contact"
-              className="btn-primary text-lg px-10 py-4"
-            >
+            <Link to="/contact" className="btn-primary text-lg px-10 py-4">
               Schedule Consultation
             </Link>
             <Link
@@ -63,37 +52,54 @@ const Hero = () => {
             <div className="text-center">
               <div className="flex items-center justify-center mb-2">
                 <IconQuality
-                  className="w-6 h-6 text-sage-300 mr-2"
-                  style={{ "--icon-fill": "none", "--icon-accent": "none" }}
+                  className="w-10 h-10 text-sage-300 mr-3"
+                  style={{
+                    "--icon-fill": "none",
+                    "--icon-accent": "none",
+                    filter: "drop-shadow(0 0 0.6px currentColor)",
+                  }}
                 />
                 <span className="text-4xl font-bold text-white">30+</span>
               </div>
-              <p className="text-sage-200 text-sm">Years Experience</p>
+              <p className="text-sage-200 text-base font-medium">
+                Years Experience
+              </p>
             </div>
             <div className="text-center">
               <div className="flex items-center justify-center mb-2">
                 <IconPlantscape
-                  className="w-6 h-6 text-sage-300 mr-2"
-                  style={{ "--icon-fill": "none", "--icon-accent": "none" }}
+                  className="w-10 h-10 text-sage-300 mr-3"
+                  style={{
+                    "--icon-fill": "none",
+                    "--icon-accent": "none",
+                    filter: "drop-shadow(0 0 0.6px currentColor)",
+                  }}
                 />
                 <span className="text-4xl font-bold text-white">500+</span>
               </div>
-              <p className="text-sage-200 text-sm">Projects Completed</p>
+              <p className="text-sage-200 text-base font-medium">
+                Projects Completed
+              </p>
             </div>
             <div className="text-center">
               <div className="flex items-center justify-center mb-2">
                 <IconExpertise
-                  className="w-6 h-6 text-sage-300 mr-2"
-                  style={{ "--icon-fill": "none", "--icon-accent": "none" }}
+                  className="w-10 h-10 text-sage-300 mr-3"
+                  style={{
+                    "--icon-fill": "none",
+                    "--icon-accent": "none",
+                    filter: "drop-shadow(0 0 0.6px currentColor)",
+                  }}
                 />
                 <span className="text-4xl font-bold text-white">98%</span>
               </div>
-              <p className="text-sage-200 text-sm">Client Satisfaction</p>
+              <p className="text-sage-200 text-base font-medium">
+                Client Satisfaction
+              </p>
             </div>
           </div>
         </div>
       </div>
-
     </section>
   );
 };

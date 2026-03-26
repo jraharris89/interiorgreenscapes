@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from "react";
 import {
   MapPin,
   Phone,
@@ -8,21 +8,23 @@ import {
   CheckCircle,
   Facebook,
   Instagram,
-} from 'lucide-react';
-import { analytics } from '../utils/analytics';
+} from "lucide-react";
+import { analytics } from "../utils/analytics";
 
 const Contact = ({ isFullPage = false }) => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    service: '',
-    message: '',
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    service: "",
+    message: "",
   });
-  const [honeypot, setHoneypot] = useState('');
+  const [honeypot, setHoneypot] = useState("");
   const formLoadTime = useRef(0);
-  useEffect(() => { formLoadTime.current = Date.now(); }, []);
+  useEffect(() => {
+    formLoadTime.current = Date.now();
+  }, []);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -51,29 +53,29 @@ const Contact = ({ isFullPage = false }) => {
   const contactInfo = [
     {
       icon: MapPin,
-      title: 'Location',
-      content: 'Boise, ID 83705',
-      subtext: 'Serving the Treasure Valley',
+      title: "Location",
+      content: "Boise, ID 83705",
+      subtext: "Serving the Treasure Valley",
     },
     {
       icon: Phone,
-      title: 'Phone',
-      content: '(208) 871-2588',
-      subtext: 'Call or text us anytime',
-      link: 'tel:2088712588',
+      title: "Phone",
+      content: "(208) 871-2588",
+      subtext: "Call or text us anytime",
+      link: "tel:2088712588",
     },
     {
       icon: Mail,
-      title: 'Email',
-      content: 'info@interiorgreenscapes.com',
-      subtext: 'We respond within 24 hours',
-      link: 'mailto:info@interiorgreenscapes.com',
+      title: "Email",
+      content: "michelle@interiorgreenscapes.com",
+      subtext: "We respond within 24 hours",
+      link: "mailto:michelle@interiorgreenscapes.com",
     },
     {
       icon: Clock,
-      title: 'Hours',
-      content: 'Mon-Fri: 9am - 5pm',
-      subtext: 'Saturday by appointment',
+      title: "Hours",
+      content: "Mon-Fri: 9am - 5pm",
+      subtext: "Saturday by appointment",
     },
   ];
 
@@ -81,16 +83,18 @@ const Contact = ({ isFullPage = false }) => {
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header — hidden when page already has a hero */}
-        {!isFullPage && <div className="text-center mb-16">
-          <span className="inline-block px-4 py-1 bg-sage-100 text-sage-600 rounded-full text-sm font-medium mb-4">
-            Get In Touch
-          </span>
-          <h2 className="section-heading">Contact Us</h2>
-          <p className="section-subheading">
-            Ready to transform your space? We'd love to hear from you. Get in touch
-            for a free consultation.
-          </p>
-        </div>}
+        {!isFullPage && (
+          <div className="text-center mb-16">
+            <span className="inline-block px-4 py-1 bg-sage-100 text-sage-600 rounded-full text-sm font-medium mb-4">
+              Get In Touch
+            </span>
+            <h2 className="section-heading">Contact Us</h2>
+            <p className="section-subheading">
+              Ready to transform your space? We'd love to hear from you. Get in
+              touch for a free consultation.
+            </p>
+          </div>
+        )}
 
         <div className="grid lg:grid-cols-5 gap-12">
           {/* Contact Info */}
@@ -104,11 +108,17 @@ const Contact = ({ isFullPage = false }) => {
                   <item.icon className="w-6 h-6 text-sage-600" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-forest-800">{item.title}</h3>
+                  <h3 className="font-semibold text-forest-800">
+                    {item.title}
+                  </h3>
                   {item.link ? (
                     <a
                       href={item.link}
-                      onClick={() => item.title === 'Phone' ? analytics.phoneClick() : analytics.emailClick()}
+                      onClick={() =>
+                        item.title === "Phone"
+                          ? analytics.phoneClick()
+                          : analytics.emailClick()
+                      }
                       className="text-sage-600 hover:text-sage-700 font-medium"
                     >
                       {item.content}
@@ -126,19 +136,19 @@ const Contact = ({ isFullPage = false }) => {
               <h3 className="font-semibold text-forest-800 mb-4">Follow Us</h3>
               <div className="flex space-x-4">
                 <a
-                  href="https://facebook.com/interiorgreenscapesboise"
+                  href="https://facebook.com/interiorgreenscapes"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => analytics.socialClick('facebook')}
+                  onClick={() => analytics.socialClick("facebook")}
                   className="w-12 h-12 bg-sage-100 rounded-xl flex items-center justify-center hover:bg-sage-200 transition-colors"
                 >
                   <Facebook className="w-6 h-6 text-sage-600" />
                 </a>
                 <a
-                  href="https://instagram.com/interiorgreenscapesboise"
+                  href="https://instagram.com/interiorgreenscapes"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => analytics.socialClick('instagram')}
+                  onClick={() => analytics.socialClick("instagram")}
                   className="w-12 h-12 bg-sage-100 rounded-xl flex items-center justify-center hover:bg-sage-200 transition-colors"
                 >
                   <Instagram className="w-6 h-6 text-sage-600" />
@@ -159,18 +169,19 @@ const Contact = ({ isFullPage = false }) => {
                     Message Sent!
                   </h3>
                   <p className="text-gray-600 mb-6">
-                    Thank you for reaching out. We'll get back to you within 24 hours.
+                    Thank you for reaching out. We'll get back to you within 24
+                    hours.
                   </p>
                   <button
                     onClick={() => {
                       setIsSubmitted(false);
                       setFormData({
-                        name: '',
-                        email: '',
-                        phone: '',
-                        company: '',
-                        service: '',
-                        message: '',
+                        name: "",
+                        email: "",
+                        phone: "",
+                        company: "",
+                        service: "",
+                        message: "",
                       });
                     }}
                     className="btn-secondary"
@@ -264,11 +275,15 @@ const Contact = ({ isFullPage = false }) => {
                       className="w-full px-4 py-3 rounded-xl border border-sage-200 focus:border-sage-400 focus:ring-2 focus:ring-sage-200 outline-none transition-all bg-white"
                     >
                       <option value="">Select a service...</option>
-                      <option value="interior-plantscaping">Interior Plantscaping</option>
-                      <option value="green-walls">Green Walls & Living Walls</option>
-                      <option value="atrium-design">Large Atrium Design</option>
-                      <option value="holiday-decorations">Holiday Decorations</option>
-                      <option value="silk-florals">Silk & Fresh Florals</option>
+                      <option value="interior-plantscaping">
+                        Interior Plantscaping
+                      </option>
+                      <option value="green-walls">Green Walls</option>
+                      <option value="atrium-design">Atrium Design</option>
+                      <option value="holiday-decorations">
+                        Holiday Decorations
+                      </option>
+                      <option value="florals">Fresh Florals</option>
                       <option value="maintenance">Plant Maintenance</option>
                       <option value="other">Other</option>
                     </select>

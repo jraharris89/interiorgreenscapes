@@ -1,5 +1,5 @@
-import Portfolio from '../components/Portfolio';
-import CTA from '../components/CTA';
+import Portfolio from "../components/Portfolio";
+import CTA from "../components/CTA";
 
 const PortfolioPage = () => {
   return (
@@ -11,7 +11,7 @@ const PortfolioPage = () => {
             Our Work
           </span>
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-            Project Portfolio
+            Installations We're Proud Of
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Explore our diverse collection of interior plantscaping projects
