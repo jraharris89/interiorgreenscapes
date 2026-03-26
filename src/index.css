@@ -1,8 +1,22 @@
-@import url("https://fonts.googleapis.com/css2?family=Alex+Brush&family=Raleway:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Leaflet city label tooltips */
+.city-label {
+  background: rgba(39, 51, 39, 0.88) !important;
+  border: none !important;
+  border-radius: 6px !important;
+  color: #fff !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  padding: 3px 8px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25) !important;
+  white-space: nowrap !important;
+}
+.city-label::before {
+  display: none !important;
+}
 
 @layer base {
   html {
