@@ -1,21 +1,16 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import { IconSustain } from './icons/BotanicalIcons';
 
 const CTA = () => {
   return (
-    <section className="py-24 bg-gradient-to-br from-sage-400 via-sage-500 to-forest-600 relative overflow-hidden">
-      {/* Decorative Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-10 left-10 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-forest-500/20 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <IconSustain
-            className="w-[600px] h-[600px] text-white/5"
-            style={{ "--icon-fill": "none", "--icon-accent": "none" }}
-          />
-        </div>
-      </div>
+    <section className="py-24 relative overflow-hidden">
+      {/* Photo background */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${import.meta.env.BASE_URL}images/living-wall-pattern.jpg)` }}
+      />
+      {/* Dark forest overlay */}
+      <div className="absolute inset-0 bg-forest-900/80" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-6">

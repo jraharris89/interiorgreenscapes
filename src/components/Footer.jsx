@@ -1,36 +1,36 @@
-import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Facebook, Instagram, ArrowUp } from 'lucide-react';
-import { analytics } from '../utils/analytics';
+import { Link } from "react-router-dom";
+import { Phone, Mail, MapPin, ArrowUp } from "lucide-react";
+import { analytics } from "../utils/analytics";
 
 const Footer = () => {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Services', path: '/services' },
-    { name: 'Portfolio', path: '/portfolio' },
-    { name: 'About Us', path: '/about' },
-    { name: 'Contact', path: '/contact' },
+    { name: "Home", path: "/" },
+    { name: "Services", path: "/services" },
+    { name: "Portfolio", path: "/portfolio" },
+    { name: "About Us", path: "/about" },
+    { name: "Contact", path: "/contact" },
   ];
 
   const services = [
-    'Interior Plantscaping',
-    'Green Walls',
-    'Atrium Design',
-    'Holiday Decorations',
-    'Fresh Florals',
-    'Plant Maintenance',
+    { name: "Interior Plantscaping", hash: "interior-plantscaping" },
+    { name: "Green Walls", hash: "green-walls" },
+    { name: "Atrium Design", hash: "atrium-design" },
+    { name: "Holiday Decorations", hash: "holiday-decorations" },
+    { name: "Fresh Florals", hash: "fresh-florals" },
+    { name: "Plant Maintenance", hash: "plant-maintenance" },
   ];
 
   return (
     <footer className="bg-forest-900 text-white">
       {/* Main Footer */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-[1fr_auto_auto_auto] gap-12 lg:gap-16">
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center space-x-3 mb-6">
@@ -40,39 +40,67 @@ const Footer = () => {
                 className="w-10 h-10 object-contain"
               />
               <div>
-                <span className="font-copperplate text-sm tracking-widest uppercase block text-right leading-none">Interior</span>
-                <span className="font-script text-2xl block -mt-1 leading-none">Greenscapes</span>
+                <span className="font-copperplate text-sm tracking-widest uppercase block text-right leading-none">
+                  Interior
+                </span>
+                <span className="font-script text-2xl block -mt-1 leading-none">
+                  Greenscapes
+                </span>
               </div>
             </Link>
             <p className="text-gray-400 leading-relaxed mb-6">
-              Transforming spaces with beautiful plants and living designs. Serving the
-              Treasure Valley for over 30 years.
+              Transforming spaces with beautiful plants and living designs.
+              Serving the Treasure Valley for over 30 years.
             </p>
             <div className="flex space-x-4">
               <a
-                href="https://facebook.com/interiorgreenscapesboise"
+                href="https://facebook.com/interiorgreenscapes"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => analytics.socialClick('facebook')}
+                onClick={() => analytics.socialClick("facebook")}
                 className="w-10 h-10 bg-forest-800 rounded-lg flex items-center justify-center hover:bg-sage-500 transition-colors"
               >
-                <Facebook className="w-5 h-5" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                </svg>
               </a>
               <a
-                href="https://instagram.com/interiorgreenscapesboise"
+                href="https://instagram.com/interiorgreenscapes"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => analytics.socialClick('instagram')}
+                onClick={() => analytics.socialClick("instagram")}
                 className="w-10 h-10 bg-forest-800 rounded-lg flex items-center justify-center hover:bg-sage-500 transition-colors"
               >
-                <Instagram className="w-5 h-5" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-display text-lg font-semibold mb-6">Quick Links</h4>
+            <h4 className="font-display text-lg font-semibold mb-6">
+              Quick Links
+            </h4>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.path}>
@@ -89,15 +117,17 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="font-display text-lg font-semibold mb-6">Our Services</h4>
+            <h4 className="font-display text-lg font-semibold mb-6">
+              Our Services
+            </h4>
             <ul className="space-y-3">
               {services.map((service) => (
-                <li key={service}>
+                <li key={service.name}>
                   <Link
-                    to="/services"
+                    to={`/services#${service.hash}`}
                     className="text-gray-400 hover:text-sage-400 transition-colors"
                   >
-                    {service}
+                    {service.name}
                   </Link>
                 </li>
               ))}
@@ -106,7 +136,9 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="font-display text-lg font-semibold mb-6">Contact Us</h4>
+            <h4 className="font-display text-lg font-semibold mb-6">
+              Contact Us
+            </h4>
             <ul className="space-y-4">
               <li className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-sage-400 flex-shrink-0 mt-0.5" />
@@ -127,12 +159,12 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="mailto:info@interiorgreenscapes.com"
+                  href="mailto:michelle@interiorgreenscapes.com"
                   onClick={() => analytics.emailClick()}
                   className="flex items-center space-x-3 text-gray-400 hover:text-sage-400 transition-colors"
                 >
                   <Mail className="w-5 h-5 text-sage-400" />
-                  <span>info@interiorgreenscapes.com</span>
+                  <span>michelle@interiorgreenscapes.com</span>
                 </a>
               </li>
             </ul>
@@ -148,12 +180,6 @@ const Footer = () => {
               &copy; {currentYear} Interior Greenscapes. All rights reserved.
             </p>
             <div className="flex items-center space-x-6 mt-4 md:mt-0">
-              <Link to="/privacy" className="text-gray-500 text-sm hover:text-gray-400">
-                Privacy Policy
-              </Link>
-              <Link to="/terms" className="text-gray-500 text-sm hover:text-gray-400">
-                Terms of Service
-              </Link>
               <button
                 onClick={scrollToTop}
                 className="w-10 h-10 bg-sage-500 rounded-lg flex items-center justify-center hover:bg-sage-400 transition-colors"
