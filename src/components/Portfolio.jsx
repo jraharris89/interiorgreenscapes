@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import WaCarousel from "@awesome.me/webawesome/dist/react/carousel/index.js";
 import WaCarouselItem from "@awesome.me/webawesome/dist/react/carousel-item/index.js";
@@ -159,9 +160,9 @@ const Portfolio = ({ isFullPage = false }) => {
         {/* View All Button (on homepage) */}
         {!isFullPage && (
           <div className="text-center mt-12">
-            <a href="/portfolio" className="btn-primary">
+            <Link to="/portfolio" className="btn-primary">
               View All Designs
-            </a>
+            </Link>
           </div>
         )}
       </div>
