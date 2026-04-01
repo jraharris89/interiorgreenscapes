@@ -289,32 +289,50 @@ const Portfolio = ({ isFullPage = false }) => {
                   background: "#0a0f0a",
                 }}
               >
-                {/* Blurred background fill */}
+                {/* Blurred background — crossfades per slide */}
+                {activeCategory.gallery.map((img, idx) => (
+                  <div
+                    key={idx}
+                    style={{
+                      position: "absolute",
+                      inset: "-30px",
+                      backgroundImage: `url(${img})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      filter: "blur(24px)",
+                      transform: "scale(1.1)",
+                      opacity: idx === currentIndex ? 0.75 : 0,
+                      transition: "opacity 0.45s ease",
+                      pointerEvents: "none",
+                    }}
+                  />
+                ))}
+
+                {/* Sliding image track */}
                 <div
                   style={{
-                    position: "absolute",
-                    inset: "-30px",
-                    backgroundImage: `url(${activeCategory.gallery[currentIndex]})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    filter: "blur(24px)",
-                    transform: "scale(1.1)",
-                    opacity: 0.75,
-                    transition: "background-image 0.3s ease",
-                  }}
-                />
-                <img
-                  key={currentIndex}
-                  src={activeCategory.gallery[currentIndex]}
-                  alt={`${activeCategory.name} ${currentIndex + 1}`}
-                  style={{
-                    position: "relative",
-                    width: "100%",
+                    display: "flex",
+                    width: `${total * 100}%`,
                     height: "100%",
-                    objectFit: "contain",
-                    animation: "ig-slide-in 0.35s cubic-bezier(0.34,1.2,0.64,1)",
+                    transform: `translateX(-${(currentIndex / total) * 100}%)`,
+                    transition: "transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                    position: "relative",
                   }}
-                />
+                >
+                  {activeCategory.gallery.map((img, idx) => (
+                    <div
+                      key={idx}
+                      style={{ width: `${100 / total}%`, flexShrink: 0, height: "100%" }}
+                    >
+                      <img
+                        src={img}
+                        alt={`${activeCategory.name} ${idx + 1}`}
+                        loading={Math.abs(idx - currentIndex) <= 1 ? "eager" : "lazy"}
+                        style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
 
               {/* Dots + counter */}
@@ -354,12 +372,6 @@ const Portfolio = ({ isFullPage = false }) => {
         </div>
       )}
 
-      <style>{`
-        @keyframes ig-slide-in {
-          from { opacity: 0; transform: scale(0.96); }
-          to   { opacity: 1; transform: scale(1); }
-        }
-      `}</style>
     </section>
   );
 };
