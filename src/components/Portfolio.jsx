@@ -16,7 +16,6 @@ const categories = [
     gallery: [
       `${BASE}images/atrium-overhead-trees.jpg`,
       `${BASE}images/atrium-tree-grand.jpg`,
-      `${BASE}images/atrium-tree-wide.jpg`,
       `${BASE}images/atrium-tropical-seating.jpg`,
       `${BASE}images/fav-atrium.jpg`,
       `${BASE}images/fav-atrium-planter.jpg`,
@@ -30,10 +29,11 @@ const categories = [
       "Vertical gardens that transform any space into a vibrant, living work of art.",
     featureImage: `${BASE}images/living-wall-pattern.jpg`,
     gallery: [
+      `${BASE}images/living-wall-pattern.jpg`,
       `${BASE}images/living-wall-large.jpg`,
       `${BASE}images/living-wall-closeup.jpg`,
       `${BASE}images/living-wall-lobby-wide.jpg`,
-      `${BASE}images/living-wall-pattern.jpg`,
+      `${BASE}images/living-wall-lobby-close.jpg`,
       `${BASE}images/fav-green-wall.jpg`,
     ],
   },
@@ -43,12 +43,12 @@ const categories = [
     title: "Indoor Water Features",
     description:
       "Tranquil water features surrounded by lush tropical plantings for a serene atmosphere.",
-    featureImage: `${BASE}images/water-feature-rocks.jpg`,
+    featureImage: `${BASE}images/fav-water-feature-planter.jpg`,
     imageStyle: { objectPosition: "center bottom" },
     gallery: [
+      `${BASE}images/fav-water-feature-planter.jpg`,
       `${BASE}images/water-feature-indoor.jpg`,
       `${BASE}images/fav-water-feature.jpg`,
-      `${BASE}images/fav-water-feature-planter.jpg`,
       `${BASE}images/fav-water-feature-planter2.jpg`,
     ],
   },
@@ -58,14 +58,14 @@ const categories = [
     title: "Delivering Seasonal Magic",
     description:
       "Festive seasonal decorations that delight visitors and transform spaces during the holidays.",
-    featureImage: `${BASE}images/Christmas_Tree2.jpg`,
+    featureImage: `${BASE}images/fav-christmas-atrium.jpg`,
     imageStyle: { objectPosition: "center top" },
     gallery: [
+      `${BASE}images/fav-christmas-atrium.jpg`,
       `${BASE}images/Christmas_Tree1.jpg`,
       `${BASE}images/Christmas_Tree3.jpg`,
       `${BASE}images/Garland.jpg`,
       `${BASE}images/poinsettia_tree.jpg`,
-      `${BASE}images/fav-christmas-atrium.jpg`,
       `${BASE}images/fav-christmas-tree.jpg`,
       `${BASE}images/fav-christmas-tree2.jpg`,
       `${BASE}images/fav-christmas-tree3.jpg`,
@@ -81,12 +81,11 @@ const categories = [
       "Elegant interior plantscaping that elevates professional spaces and creates lasting impressions.",
     featureImage: `${BASE}images/indoor-garden-seating.jpg`,
     gallery: [
+      `${BASE}images/fav-lobby.jpg`,
       `${BASE}images/floral-anthurium.jpg`,
       `${BASE}images/planted-benches-garden.jpg`,
-      `${BASE}images/plantscaping-lobby.jpg`,
       `${BASE}images/tropical-arrangement-bowl.jpg`,
       `${BASE}images/tropical-arrangement.jpg`,
-      `${BASE}images/fav-lobby.jpg`,
       `${BASE}images/fav-lobby-planter.jpg`,
     ],
   },
@@ -110,7 +109,9 @@ const Portfolio = ({ isFullPage = false }) => {
     setCurrentIndex(0);
     setActiveCategory(category);
     setIsVisible(false);
-    requestAnimationFrame(() => requestAnimationFrame(() => setIsVisible(true)));
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() => setIsVisible(true)),
+    );
   };
 
   const closeGallery = useCallback(() => {
@@ -121,22 +122,29 @@ const Portfolio = ({ isFullPage = false }) => {
     }, 380);
   }, []);
 
-  const navigate = useCallback((dir) => {
-    setCurrentIndex((i) => {
-      const total = activeCategory?.gallery.length ?? 1;
-      return dir === "prev"
-        ? i === 0 ? total - 1 : i - 1
-        : i === total - 1 ? 0 : i + 1;
-    });
-  }, [activeCategory]);
+  const navigate = useCallback(
+    (dir) => {
+      setCurrentIndex((i) => {
+        const total = activeCategory?.gallery.length ?? 1;
+        return dir === "prev"
+          ? i === 0
+            ? total - 1
+            : i - 1
+          : i === total - 1
+            ? 0
+            : i + 1;
+      });
+    },
+    [activeCategory],
+  );
 
   // Keyboard navigation
   useEffect(() => {
     if (!activeCategory) return;
     const handler = (e) => {
-      if (e.key === "ArrowLeft")  navigate("prev");
+      if (e.key === "ArrowLeft") navigate("prev");
       if (e.key === "ArrowRight") navigate("next");
-      if (e.key === "Escape")     closeGallery();
+      if (e.key === "Escape") closeGallery();
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
@@ -187,16 +195,24 @@ const Portfolio = ({ isFullPage = false }) => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-forest-900/95 via-forest-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute inset-x-0 bottom-0 p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
-                <span className="text-sage-200 text-sm font-medium mb-1">{cat.name}</span>
-                <h3 className="text-white text-xl font-display font-semibold mb-2 drop-shadow-lg">{cat.title}</h3>
-                <p className="text-gray-200 text-sm line-clamp-2 drop-shadow-lg">{cat.description}</p>
+                <span className="text-sage-200 text-sm font-medium mb-1">
+                  {cat.name}
+                </span>
+                <h3 className="text-white text-xl font-display font-semibold mb-2 drop-shadow-lg">
+                  {cat.title}
+                </h3>
+                <p className="text-gray-200 text-sm line-clamp-2 drop-shadow-lg">
+                  {cat.description}
+                </p>
                 <div className="mt-4 text-sage-300 text-sm font-medium">
                   View Gallery ({cat.gallery.length} photos)
                 </div>
               </div>
               {/* Always-visible label */}
               <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-forest-900/80 to-transparent group-hover:opacity-0 transition-opacity duration-300">
-                <h3 className="text-white text-lg font-display font-semibold drop-shadow-lg">{cat.title}</h3>
+                <h3 className="text-white text-lg font-display font-semibold drop-shadow-lg">
+                  {cat.title}
+                </h3>
               </div>
             </div>
           ))}
@@ -230,7 +246,8 @@ const Portfolio = ({ isFullPage = false }) => {
             style={{
               transform: isVisible ? "translateY(0)" : "translateY(-16px)",
               opacity: isVisible ? 1 : 0,
-              transition: "transform 0.4s cubic-bezier(0.34,1.2,0.64,1), opacity 0.35s ease",
+              transition:
+                "transform 0.4s cubic-bezier(0.34,1.2,0.64,1), opacity 0.35s ease",
             }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -315,20 +332,31 @@ const Portfolio = ({ isFullPage = false }) => {
                     width: `${total * 100}%`,
                     height: "100%",
                     transform: `translateX(-${(currentIndex / total) * 100}%)`,
-                    transition: "transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                    transition:
+                      "transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
                     position: "relative",
                   }}
                 >
                   {activeCategory.gallery.map((img, idx) => (
                     <div
                       key={idx}
-                      style={{ width: `${100 / total}%`, flexShrink: 0, height: "100%" }}
+                      style={{
+                        width: `${100 / total}%`,
+                        flexShrink: 0,
+                        height: "100%",
+                      }}
                     >
                       <img
                         src={img}
                         alt={`${activeCategory.name} ${idx + 1}`}
-                        loading={Math.abs(idx - currentIndex) <= 1 ? "eager" : "lazy"}
-                        style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                        loading={
+                          Math.abs(idx - currentIndex) <= 1 ? "eager" : "lazy"
+                        }
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "contain",
+                        }}
                       />
                     </div>
                   ))}
@@ -346,7 +374,10 @@ const Portfolio = ({ isFullPage = false }) => {
                         height: "6px",
                         width: idx === currentIndex ? "24px" : "6px",
                         borderRadius: "3px",
-                        background: idx === currentIndex ? "#9daf6f" : "rgba(255,255,255,0.25)",
+                        background:
+                          idx === currentIndex
+                            ? "#9daf6f"
+                            : "rgba(255,255,255,0.25)",
                         border: "none",
                         cursor: "pointer",
                         transition: "all 0.3s ease",
@@ -355,7 +386,13 @@ const Portfolio = ({ isFullPage = false }) => {
                     />
                   ))}
                 </div>
-                <span style={{ color: "rgba(255,255,255,0.35)", fontSize: "12px", fontFamily: "monospace" }}>
+                <span
+                  style={{
+                    color: "rgba(255,255,255,0.35)",
+                    fontSize: "12px",
+                    fontFamily: "monospace",
+                  }}
+                >
                   {currentIndex + 1} / {total}
                 </span>
               </div>
@@ -371,7 +408,6 @@ const Portfolio = ({ isFullPage = false }) => {
           </div>
         </div>
       )}
-
     </section>
   );
 };
