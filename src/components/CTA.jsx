@@ -20,17 +20,17 @@ const CTA = () => {
           Let's create a beautiful, living environment together. Schedule your free
           consultation today and discover the difference plants can make.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center w-[260px] sm:w-auto mx-auto">
           <Link
             to="/contact"
-            className="inline-flex items-center justify-center bg-white text-forest-700 font-medium py-4 px-10 rounded-full hover:bg-forest-50 transition-all duration-300 transform hover:scale-105 shadow-xl"
+            className="inline-flex w-full sm:w-auto items-center justify-center bg-white text-forest-700 font-medium text-sm py-2.5 px-5 sm:text-base sm:py-3 sm:px-8 rounded-full hover:bg-forest-50 transition-all duration-300 transform hover:scale-105 shadow-xl"
           >
             Get Free Consultation
-            <ArrowRight className="w-5 h-5 ml-2" />
+            <ArrowRight className="w-4 h-4 ml-2 sm:w-5 sm:h-5" />
           </Link>
           <a
             href="tel:2088712588"
-            className="inline-flex items-center justify-center bg-transparent border-2 border-white text-white font-medium py-4 px-10 rounded-full hover:bg-white hover:text-forest-700 transition-all duration-300"
+            className="inline-flex w-full sm:w-auto items-center justify-center bg-transparent border-2 border-white text-white font-medium text-sm py-2.5 px-5 sm:text-base sm:py-3 sm:px-8 rounded-full hover:bg-white hover:text-forest-700 transition-all duration-300"
           >
             Call (208) 871-2588
           </a>

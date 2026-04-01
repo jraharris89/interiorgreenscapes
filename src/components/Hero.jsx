@@ -35,13 +35,13 @@ const Hero = () => {
             commercial and residential spaces throughout the Treasure Valley.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Link to="/contact" className="btn-primary text-lg px-10 py-4">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 w-[260px] sm:w-auto mx-auto">
+            <Link to="/contact" className="btn-primary w-full sm:w-auto text-sm px-5 py-2.5 sm:text-base sm:px-8 sm:py-3">
               Schedule Consultation
             </Link>
             <Link
               to="/portfolio"
-              className="btn-secondary border-white/30 text-white hover:bg-white hover:text-forest-800 text-lg px-10 py-4"
+              className="btn-secondary w-full sm:w-auto border-white/30 text-white hover:bg-white hover:text-forest-800 text-sm px-5 py-2.5 sm:text-base sm:px-8 sm:py-3"
             >
               View Our Work
             </Link>
