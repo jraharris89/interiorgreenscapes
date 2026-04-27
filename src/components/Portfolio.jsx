@@ -42,7 +42,7 @@ const categories = [
     name: "Moss Walls",
     title: "Preserved Moss Walls",
     description:
-      "Natural moss panels that transform walls into textured living art. No watering or sunlight required.",
+      "Preserved moss panels that add living texture to any wall. Zero maintenance.",
     featureImage: `${BASE}images/greenwall-1.jpg`,
     gallery: [
       `${BASE}images/greenwall-1.jpg`,
