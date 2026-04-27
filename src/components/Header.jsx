@@ -11,12 +11,19 @@ const Header = () => {
   const isHomePage = location.pathname === "/";
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleOutsideClick = (e) => {
+      if (!e.target.closest("header")) setIsOpen(false);
+    };
+    document.addEventListener("click", handleOutsideClick);
+    return () => document.removeEventListener("click", handleOutsideClick);
+  }, [isOpen]);
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -99,7 +106,7 @@ const Header = () => {
               to="/contact"
               className="bg-sage-400 hover:bg-sage-500 text-white font-medium py-1.5 px-6 rounded-full transition-all duration-300 text-sm"
             >
-              Get a Quote
+              Schedule Consultation
             </Link>
           </div>
 
@@ -130,20 +137,20 @@ const Header = () => {
                   {link.name}
                 </Link>
               ))}
-              <div className="px-6 pt-4 border-t mt-4">
+              <div className="px-6 pt-4 border-t mt-4 space-y-3">
                 <a
                   href="tel:2088712588"
-                  className="flex items-center space-x-2 text-forest-700 mb-4"
+                  className="flex items-center justify-center gap-2 bg-forest-50 text-forest-700 font-medium rounded-xl py-3 hover:bg-forest-100 transition-colors"
                 >
                   <Phone className="w-4 h-4" />
-                  <span className="font-medium">(208) 871-2588</span>
+                  <span>(208) 871-2588</span>
                 </a>
                 <Link
                   to="/contact"
                   onClick={() => setIsOpen(false)}
                   className="btn-primary block text-center"
                 >
-                  Get a Quote
+                  Schedule Consultation
                 </Link>
               </div>
             </nav>

@@ -20,7 +20,7 @@ const botanicalIcons = [
   { Icon: IconGreenWall, name: "GreenWall", usage: "Green Walls" },
   { Icon: IconAtrium, name: "Atrium", usage: "Large Atrium Design" },
   { Icon: IconHoliday, name: "Holiday", usage: "Holiday Decorations" },
-  { Icon: IconFlorals, name: "Florals", usage: "Fresh Florals" },
+  { Icon: IconFlorals, name: "Florals", usage: "Color Program" },
   { Icon: IconMaintenance, name: "Maintenance", usage: "Plant Maintenance" },
   { Icon: IconSustain, name: "Sustain", usage: "Sustainability" },
   { Icon: IconExpertise, name: "Expertise", usage: "Expertise / Team" },

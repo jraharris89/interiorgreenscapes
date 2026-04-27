@@ -10,7 +10,7 @@ const CTA = () => {
         style={{ backgroundImage: `url(${import.meta.env.BASE_URL}images/living-wall-pattern.jpg)` }}
       />
       {/* Dark forest overlay */}
-      <div className="absolute inset-0 bg-forest-900/80" />
+      <div className="absolute inset-0 bg-forest-900/65" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-6">
@@ -25,7 +25,7 @@ const CTA = () => {
             to="/contact"
             className="inline-flex w-full sm:w-auto items-center justify-center bg-white text-forest-700 font-medium text-sm py-2.5 px-5 sm:text-base sm:py-3 sm:px-8 rounded-full hover:bg-forest-50 transition-all duration-300 transform hover:scale-105 shadow-xl"
           >
-            Get Free Consultation
+            Schedule Consultation
             <ArrowRight className="w-4 h-4 ml-2 sm:w-5 sm:h-5" />
           </Link>
           <a

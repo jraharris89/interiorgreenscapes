@@ -3,7 +3,6 @@ import {
   MapPin,
   Phone,
   Mail,
-  Clock,
   Send,
   CheckCircle,
   Facebook,
@@ -27,27 +26,74 @@ const Contact = ({ isFullPage = false }) => {
   }, []);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [errorRetryable, setErrorRetryable] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState({ name: "", email: "", message: "" });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    if (fieldErrors[name]) {
+      setFieldErrors((prev) => ({ ...prev, [name]: "" }));
+    }
+  };
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    if (name === "name" && !value.trim()) {
+      setFieldErrors((prev) => ({ ...prev, name: "Your name is required." }));
+    } else if (name === "email") {
+      if (!value.trim()) {
+        setFieldErrors((prev) => ({ ...prev, email: "Email address is required." }));
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+        setFieldErrors((prev) => ({ ...prev, email: "Please enter a valid email address." }));
+      } else {
+        setFieldErrors((prev) => ({ ...prev, email: "" }));
+      }
+    } else if (name === "message" && !value.trim()) {
+      setFieldErrors((prev) => ({ ...prev, message: "Please describe your project or space." }));
+    } else {
+      setFieldErrors((prev) => ({ ...prev, [name]: "" }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Bot protection: honeypot field should be empty
     if (honeypot) return;
 
-    // Bot protection: form submitted too quickly (< 3 seconds = likely bot)
-    const elapsed = Date.now() - formLoadTime.current;
-    if (elapsed < 3000) return;
-
+    setSubmitError("");
+    setErrorRetryable(false);
     setIsSubmitting(true);
-    analytics.formSubmit(formData.service);
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+
+    const endpoint = import.meta.env.VITE_FORMSPREE_URL;
+    if (!endpoint) {
+      setSubmitError("Our contact form isn't set up yet.");
+      setErrorRetryable(false);
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        analytics.formSubmit(formData.service);
+        setIsSubmitted(true);
+      } else {
+        setSubmitError("Something didn't go through on our end.");
+        setErrorRetryable(true);
+      }
+    } catch {
+      setSubmitError("We couldn't reach the server — check your connection.");
+      setErrorRetryable(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -67,15 +113,9 @@ const Contact = ({ isFullPage = false }) => {
     {
       icon: Mail,
       title: "Email",
-      content: "michelle@interiorgreenscapes.com",
+      content: "info@interiorgreenscapes.com",
       subtext: "We respond within 24 hours",
-      link: "mailto:michelle@interiorgreenscapes.com",
-    },
-    {
-      icon: Clock,
-      title: "Hours",
-      content: "Mon-Fri: 9am - 5pm",
-      subtext: "Saturday by appointment",
+      link: "mailto:info@interiorgreenscapes.com",
     },
   ];
 
@@ -215,9 +255,11 @@ const Contact = ({ isFullPage = false }) => {
                         required
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-sage-200 focus:border-sage-400 focus:ring-2 focus:ring-sage-200 outline-none transition-all"
+                        onBlur={handleBlur}
+                        className={`w-full px-4 py-3 rounded-xl border focus:ring-2 outline-none transition-all ${fieldErrors.name ? "border-red-400 focus:border-red-400 focus:ring-red-100" : "border-sage-200 focus:border-sage-400 focus:ring-sage-200"}`}
                         placeholder="John Smith"
                       />
+                      {fieldErrors.name && <p className="mt-1.5 text-sm text-red-600">{fieldErrors.name}</p>}
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -229,9 +271,11 @@ const Contact = ({ isFullPage = false }) => {
                         required
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-sage-200 focus:border-sage-400 focus:ring-2 focus:ring-sage-200 outline-none transition-all"
-                        placeholder="john@example.com"
+                        onBlur={handleBlur}
+                        className={`w-full px-4 py-3 rounded-xl border focus:ring-2 outline-none transition-all ${fieldErrors.email ? "border-red-400 focus:border-red-400 focus:ring-red-100" : "border-sage-200 focus:border-sage-400 focus:ring-sage-200"}`}
+                        placeholder="you@email.com"
                       />
+                      {fieldErrors.email && <p className="mt-1.5 text-sm text-red-600">{fieldErrors.email}</p>}
                     </div>
                   </div>
 
@@ -251,7 +295,7 @@ const Contact = ({ isFullPage = false }) => {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Company/Organization
+                        Company/Organization <span className="text-gray-400 font-normal">(optional)</span>
                       </label>
                       <input
                         type="text"
@@ -259,7 +303,7 @@ const Contact = ({ isFullPage = false }) => {
                         value={formData.company}
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-xl border border-sage-200 focus:border-sage-400 focus:ring-2 focus:ring-sage-200 outline-none transition-all"
-                        placeholder="Your Company"
+                        placeholder="Company or home — both welcome"
                       />
                     </div>
                   </div>
@@ -283,7 +327,7 @@ const Contact = ({ isFullPage = false }) => {
                       <option value="holiday-decorations">
                         Holiday Decorations
                       </option>
-                      <option value="florals">Fresh Florals</option>
+                      <option value="color-program">Color Program</option>
                       <option value="maintenance">Plant Maintenance</option>
                       <option value="other">Other</option>
                     </select>
@@ -298,11 +342,32 @@ const Contact = ({ isFullPage = false }) => {
                       required
                       value={formData.message}
                       onChange={handleChange}
+                      onBlur={handleBlur}
                       rows={5}
-                      className="w-full px-4 py-3 rounded-xl border border-sage-200 focus:border-sage-400 focus:ring-2 focus:ring-sage-200 outline-none transition-all resize-none"
+                      className={`w-full px-4 py-3 rounded-xl border focus:ring-2 outline-none transition-all resize-none ${fieldErrors.message ? "border-red-400 focus:border-red-400 focus:ring-red-100" : "border-sage-200 focus:border-sage-400 focus:ring-sage-200"}`}
                       placeholder="Tell us about your project or space..."
                     />
+                    {fieldErrors.message && <p className="mt-1.5 text-sm text-red-600">{fieldErrors.message}</p>}
                   </div>
+
+                  {submitError && (
+                    <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-4">
+                      <p className="text-sm text-red-700">{submitError}</p>
+                      <div className="flex flex-wrap gap-x-4 gap-y-2 mt-3">
+                        {errorRetryable && (
+                          <button type="submit" className="text-sm font-medium text-red-700 underline underline-offset-2 hover:no-underline">
+                            Try again
+                          </button>
+                        )}
+                        <a href="mailto:info@interiorgreenscapes.com" className="text-sm font-medium text-sage-600 underline underline-offset-2 hover:no-underline">
+                          Email us directly
+                        </a>
+                        <a href="tel:2088712588" className="text-sm font-medium text-sage-600 underline underline-offset-2 hover:no-underline">
+                          (208) 871-2588
+                        </a>
+                      </div>
+                    </div>
+                  )}
 
                   <button
                     type="submit"

@@ -177,7 +177,7 @@ export const IconHoliday = ({ className = "", style = {}, ...props }) => (
   </svg>
 );
 
-/** Fresh Florals — bouquet in vase */
+/** Color Program — bouquet in vase */
 export const IconFlorals = ({ className = "", style = {}, ...props }) => (
   <svg
     viewBox="0 0 64 64"
@@ -298,6 +298,92 @@ export const IconQuality = ({ className = "", style = {}, ...props }) => (
     <path d="M32 36 L36 32" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.3" />
     <path d="M32 32 L26 28" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.3" />
     <path d="M32 32 L38 28" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.3" />
+  </svg>
+);
+
+/** Moss Walls — organic wall grid with rounded moss patches */
+export const IconMossWall = ({ className = "", style = {}, ...props }) => (
+  <svg
+    viewBox="0 0 64 64"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    style={style}
+    {...props}
+  >
+    {/* Wall frame */}
+    <rect x="8" y="10" width="48" height="44" rx="3" stroke="currentColor" strokeWidth="2.5" fill="var(--icon-fill, none)" />
+    {/* Moss patch top-left */}
+    <ellipse cx="20" cy="22" rx="7" ry="5" stroke="currentColor" strokeWidth="1.8" fill="var(--icon-accent, none)" fillOpacity="0.35" />
+    <path d="M15 22 C15 18 19 16 20 16 C21 16 25 18 25 22" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" opacity="0.5" />
+    {/* Moss patch top-right */}
+    <ellipse cx="44" cy="20" rx="8" ry="6" stroke="currentColor" strokeWidth="1.8" fill="var(--icon-accent, none)" fillOpacity="0.35" />
+    <path d="M38 20 C38 15 42 13 44 13 C46 13 50 15 50 20" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" opacity="0.5" />
+    {/* Moss patch center */}
+    <ellipse cx="30" cy="36" rx="9" ry="6" stroke="currentColor" strokeWidth="1.8" fill="var(--icon-accent, none)" fillOpacity="0.4" />
+    <path d="M23 36 C23 30 27 28 30 28 C33 28 37 30 37 36" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" opacity="0.5" />
+    {/* Small moss accent bottom-left */}
+    <ellipse cx="17" cy="44" rx="5" ry="4" stroke="currentColor" strokeWidth="1.5" fill="var(--icon-accent, none)" fillOpacity="0.3" />
+    {/* Small moss accent bottom-right */}
+    <ellipse cx="48" cy="46" rx="5" ry="4" stroke="currentColor" strokeWidth="1.5" fill="var(--icon-accent, none)" fillOpacity="0.3" />
+  </svg>
+);
+
+/** Wellbeing — figure in lotus meditation pose with lotus flower behind */
+export const IconWellbeing = ({ className = "", style = {}, ...props }) => (
+  <svg
+    viewBox="0 0 64 64"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    style={style}
+    {...props}
+  >
+    {/* Lotus petals — drawn first so they sit behind the figure */}
+    {/* Top petal */}
+    <path d="M32 40 C29 32 29 22 32 15 C35 22 35 32 32 40Z"
+      stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"
+      fill="var(--icon-accent, none)" fillOpacity="0.3" />
+    {/* Upper-left petal */}
+    <path d="M32 40 C24 37 16 32 11 26 C15 19 23 22 32 40Z"
+      stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"
+      fill="var(--icon-accent, none)" fillOpacity="0.25" />
+    {/* Upper-right petal */}
+    <path d="M32 40 C40 37 48 32 53 26 C49 19 41 22 32 40Z"
+      stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"
+      fill="var(--icon-accent, none)" fillOpacity="0.25" />
+    {/* Lower-left petal */}
+    <path d="M32 40 C24 42 15 45 11 51 C15 57 23 55 32 40Z"
+      stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"
+      fill="var(--icon-accent, none)" fillOpacity="0.2" />
+    {/* Lower-right petal */}
+    <path d="M32 40 C40 42 49 45 53 51 C49 57 41 55 32 40Z"
+      stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"
+      fill="var(--icon-accent, none)" fillOpacity="0.2" />
+    {/* Lotus center */}
+    <circle cx="32" cy="40" r="3"
+      stroke="currentColor" strokeWidth="1.5"
+      fill="var(--icon-accent, none)" fillOpacity="0.45" />
+
+    {/* Figure — drawn on top of the lotus */}
+    {/* Head */}
+    <circle cx="32" cy="13" r="5"
+      stroke="currentColor" strokeWidth="2.2"
+      fill="var(--icon-fill, none)" />
+    {/* Torso */}
+    <path d="M27 20 C24 26 24 32 26 38 L38 38 C40 32 40 26 37 20"
+      stroke="currentColor" strokeWidth="2"
+      strokeLinecap="round" strokeLinejoin="round"
+      fill="none" />
+    {/* Legs in lotus position */}
+    <path d="M26 38 C20 40 14 46 14 54 C18 58 26 57 32 55 C38 57 46 58 50 54 C50 46 44 40 38 38"
+      stroke="currentColor" strokeWidth="2.2"
+      strokeLinecap="round" strokeLinejoin="round"
+      fill="none" />
+    {/* Crossed feet detail */}
+    <path d="M21 52 C25 50 29 51 32 51 C35 51 39 50 43 52"
+      stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"
+      opacity="0.55" />
   </svg>
 );
 

@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Images } from "lucide-react";
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -39,17 +39,16 @@ const categories = [
   },
   {
     id: 3,
-    name: "Water Features",
-    title: "Indoor Water Features",
+    name: "Moss Walls",
+    title: "Preserved Moss Walls",
     description:
-      "Tranquil water features surrounded by lush tropical plantings for a serene atmosphere.",
-    featureImage: `${BASE}images/fav-water-feature-planter.jpg`,
-    imageStyle: { objectPosition: "center bottom" },
+      "Natural moss panels that transform walls into textured living art. No watering or sunlight required.",
+    featureImage: `${BASE}images/greenwall-1.jpg`,
     gallery: [
-      `${BASE}images/fav-water-feature-planter.jpg`,
-      `${BASE}images/water-feature-indoor.jpg`,
-      `${BASE}images/fav-water-feature.jpg`,
-      `${BASE}images/fav-water-feature-planter2.jpg`,
+      `${BASE}images/greenwall-1.jpg`,
+      `${BASE}images/greenwall-2.jpg`,
+      `${BASE}images/greenwall-3.jpg`,
+      `${BASE}images/greenwall-4.jpg`,
     ],
   },
   {
@@ -87,6 +86,10 @@ const categories = [
       `${BASE}images/tropical-arrangement-bowl.jpg`,
       `${BASE}images/tropical-arrangement.jpg`,
       `${BASE}images/fav-lobby-planter.jpg`,
+      `${BASE}images/fav-water-feature-planter.jpg`,
+      `${BASE}images/water-feature-indoor.jpg`,
+      `${BASE}images/fav-water-feature.jpg`,
+      `${BASE}images/fav-water-feature-planter2.jpg`,
     ],
   },
 ];
@@ -180,12 +183,16 @@ const Portfolio = ({ isFullPage = false }) => {
         )}
 
         {/* Feature Cards Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
           {categories.map((cat) => (
             <div
               key={cat.id}
               onClick={(e) => openGallery(cat, e)}
-              className="group relative overflow-hidden rounded-2xl cursor-pointer aspect-[3/4]"
+              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openGallery(cat, e); } }}
+              tabIndex={0}
+              role="button"
+              aria-label={`View ${cat.title} gallery`}
+              className="group relative overflow-hidden rounded-xl md:rounded-2xl cursor-pointer aspect-[3/4] focus:outline-none focus-visible:ring-2 focus-visible:ring-sage-400 focus-visible:ring-offset-2"
             >
               <img
                 src={cat.featureImage}
@@ -208,11 +215,17 @@ const Portfolio = ({ isFullPage = false }) => {
                   View Gallery ({cat.gallery.length} photos)
                 </div>
               </div>
+              {/* Always-visible gallery badge */}
+              <div className="absolute top-3 right-3 bg-forest-900/60 backdrop-blur-sm rounded-full px-2.5 py-1 flex items-center gap-1.5 group-hover:opacity-0 transition-opacity duration-300">
+                <Images className="w-3.5 h-3.5 text-sage-300" />
+                <span className="text-sage-300 text-xs font-medium">{cat.gallery.length}</span>
+              </div>
               {/* Always-visible label */}
-              <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-forest-900/80 to-transparent group-hover:opacity-0 transition-opacity duration-300">
-                <h3 className="text-white text-lg font-display font-semibold drop-shadow-lg">
+              <div className="absolute inset-x-0 bottom-0 p-3 md:p-4 bg-gradient-to-t from-forest-900/80 to-transparent group-hover:opacity-0 transition-opacity duration-300">
+                <h3 className="text-white text-sm md:text-lg font-display font-semibold drop-shadow-lg leading-snug">
                   {cat.title}
                 </h3>
+                <p className="text-sage-300/90 text-xs mt-0.5 md:hidden">{cat.gallery.length} photos</p>
               </div>
             </div>
           ))}
@@ -247,7 +260,7 @@ const Portfolio = ({ isFullPage = false }) => {
               transform: isVisible ? "translateY(0)" : "translateY(-16px)",
               opacity: isVisible ? 1 : 0,
               transition:
-                "transform 0.4s cubic-bezier(0.34,1.2,0.64,1), opacity 0.35s ease",
+                "transform 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.35s ease",
             }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -275,7 +288,7 @@ const Portfolio = ({ isFullPage = false }) => {
               transform: isVisible ? "scale(1)" : "scale(0.08)",
               opacity: isVisible ? 1 : 0,
               transition: isVisible
-                ? "transform 0.45s cubic-bezier(0.34,1.25,0.64,1), opacity 0.25s ease"
+                ? "transform 0.45s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease"
                 : "transform 0.3s ease, opacity 0.2s ease",
             }}
             onClick={(e) => e.stopPropagation()}

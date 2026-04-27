@@ -14,6 +14,7 @@ const services = [
   {
     icon: IconPlantscape,
     title: "Interior Plantscaping",
+    hash: "interior-plantscaping",
     description:
       "Custom plant designs that transform your indoor spaces into vibrant, living environments.",
     image: `${import.meta.env.BASE_URL}images/plantscaping-lobby.jpg`,
@@ -21,6 +22,7 @@ const services = [
   {
     icon: IconGreenWall,
     title: "Green Walls",
+    hash: "green-walls",
     description:
       "Stunning vertical gardens that make a bold statement while improving air quality.",
     image: `${import.meta.env.BASE_URL}images/living-wall-pattern.jpg`,
@@ -28,6 +30,7 @@ const services = [
   {
     icon: IconAtrium,
     title: "Large Atrium Design",
+    hash: "atrium-design",
     description:
       "Dramatic installations for lobbies, atriums, and large commercial spaces.",
     image: `${import.meta.env.BASE_URL}images/atrium-tree-grand.jpg`,
@@ -35,20 +38,23 @@ const services = [
   {
     icon: IconHoliday,
     title: "Holiday Decorations",
+    hash: "holiday-decorations",
     description:
       "Seasonal displays and festive installations that delight customers and employees.",
     image: `${import.meta.env.BASE_URL}images/indoor-garden-holiday.jpg`,
   },
   {
     icon: IconFlorals,
-    title: "Fresh Florals",
+    title: "Color Program",
+    hash: "color-program",
     description:
-      "Beautiful fresh-cut flower arrangements and weekly delivery programs for lasting elegance.",
+      "Beautiful living arrangements for offices, lobbies, and events that bring color and elegance to any space.",
     image: `${import.meta.env.BASE_URL}images/floral-anthurium.jpg`,
   },
   {
     icon: IconMaintenance,
     title: "Plant Maintenance",
+    hash: "plant-maintenance",
     description:
       "Professional ongoing care to keep your plants healthy and thriving year-round.",
     image: `${import.meta.env.BASE_URL}images/planted-benches-garden.jpg`,
@@ -105,8 +111,8 @@ const Services = ({ showAll = false }) => {
                   {service.description}
                 </p>
                 <Link
-                  to="/services"
-                  className="inline-flex items-center text-sage-500 font-medium hover:text-sage-600 transition-colors group"
+                  to={`/services#${service.hash}`}
+                  className="inline-flex items-center text-sage-500 font-medium hover:text-sage-600 transition-colors group focus:outline-none focus-visible:ring-2 focus-visible:ring-sage-400 focus-visible:ring-offset-2 rounded-sm"
                 >
                   Learn More
                   <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />

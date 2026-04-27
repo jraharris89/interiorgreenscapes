@@ -1,9 +1,4 @@
 import { Link } from "react-router-dom";
-import {
-  IconQuality,
-  IconPlantscape,
-  IconExpertise,
-} from "./icons/BotanicalIcons";
 
 const Hero = () => {
   return (
@@ -18,10 +13,6 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-[#273327]/80 via-[#2e3d2e]/70 to-[#3a3f2b]/60" />
       </div>
 
-      {/* Decorative Elements */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-sage-400/20 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-forest-400/20 rounded-full blur-3xl animate-pulse delay-1000" />
-
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="animate-fade-in-up">
@@ -35,7 +26,7 @@ const Hero = () => {
             commercial and residential spaces throughout the Treasure Valley.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 w-[260px] sm:w-auto mx-auto">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center w-[260px] sm:w-auto mx-auto">
             <Link to="/contact" className="btn-primary w-full sm:w-auto text-sm px-5 py-2.5 sm:text-base sm:px-8 sm:py-3">
               Schedule Consultation
             </Link>
@@ -45,58 +36,6 @@ const Hero = () => {
             >
               View Our Work
             </Link>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-            <div className="text-center">
-              <div className="flex items-center justify-center mb-2">
-                <IconQuality
-                  className="w-10 h-10 text-sage-300 mr-3"
-                  style={{
-                    "--icon-fill": "none",
-                    "--icon-accent": "none",
-                    filter: "drop-shadow(0 0 0.6px currentColor)",
-                  }}
-                />
-                <span className="text-4xl font-bold text-white">30+</span>
-              </div>
-              <p className="text-sage-200 text-base font-medium">
-                Years Experience
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="flex items-center justify-center mb-2">
-                <IconPlantscape
-                  className="w-10 h-10 text-sage-300 mr-3"
-                  style={{
-                    "--icon-fill": "none",
-                    "--icon-accent": "none",
-                    filter: "drop-shadow(0 0 0.6px currentColor)",
-                  }}
-                />
-                <span className="text-4xl font-bold text-white">500+</span>
-              </div>
-              <p className="text-sage-200 text-base font-medium">
-                Projects Completed
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="flex items-center justify-center mb-2">
-                <IconExpertise
-                  className="w-10 h-10 text-sage-300 mr-3"
-                  style={{
-                    "--icon-fill": "none",
-                    "--icon-accent": "none",
-                    filter: "drop-shadow(0 0 0.6px currentColor)",
-                  }}
-                />
-                <span className="text-4xl font-bold text-white">98%</span>
-              </div>
-              <p className="text-sage-200 text-base font-medium">
-                Client Satisfaction
-              </p>
-            </div>
           </div>
         </div>
       </div>

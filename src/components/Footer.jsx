@@ -22,7 +22,7 @@ const Footer = () => {
     { name: "Green Walls", hash: "green-walls" },
     { name: "Atrium Design", hash: "atrium-design" },
     { name: "Holiday Decorations", hash: "holiday-decorations" },
-    { name: "Fresh Florals", hash: "fresh-florals" },
+    { name: "Color Program", hash: "color-program" },
     { name: "Plant Maintenance", hash: "plant-maintenance" },
   ];
 
@@ -159,12 +159,12 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="mailto:michelle@interiorgreenscapes.com"
+                  href="mailto:info@interiorgreenscapes.com"
                   onClick={() => analytics.emailClick()}
                   className="flex items-center space-x-3 text-gray-400 hover:text-sage-400 transition-colors"
                 >
                   <Mail className="w-5 h-5 text-sage-400" />
-                  <span>michelle@interiorgreenscapes.com</span>
+                  <span>info@interiorgreenscapes.com</span>
                 </a>
               </li>
             </ul>

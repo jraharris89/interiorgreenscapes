@@ -1,18 +1,18 @@
 import { Link } from 'react-router-dom';
 import { CheckCircle } from 'lucide-react';
 import {
-  IconSustain,
+  IconWellbeing,
   IconExpertise,
   IconQuality,
   OrganicIcon,
 } from './icons/BotanicalIcons';
 
 const features = [
-  'Licensed and insured professionals',
+  'Experienced and insured professionals',
   'Custom designs for any space',
   'Flexible lease or purchase options',
   'Ongoing maintenance programs',
-  'Certified horticultural technicians',
+  'Experienced horticultural technicians',
   'Eco-friendly practices',
 ];
 
@@ -31,8 +31,8 @@ const About = ({ isFullPage = false }) => {
               />
             </div>
             {/* Decorative Elements */}
-            <div className="absolute -bottom-6 -right-6 w-72 h-72 bg-sage-200 rounded-2xl -z-10" />
-            <div className="absolute -top-6 -left-6 w-32 h-32 bg-forest-200 rounded-2xl -z-10" />
+            <div className="hidden sm:block absolute -bottom-6 -right-6 w-72 h-72 bg-sage-200 rounded-2xl -z-10" />
+            <div className="hidden sm:block absolute -top-6 -left-6 w-32 h-32 bg-forest-200 rounded-2xl -z-10" />
 
           </div>
 
@@ -48,9 +48,9 @@ const About = ({ isFullPage = false }) => {
             </>}
             <p className="text-lg text-gray-600 mb-6 leading-relaxed">
               Since 1995, Interior Greenscapes has been the Treasure Valley's premier
-              provider of interior plantscaping services. Our team of experienced
-              designers and certified horticultural technicians work together to
-              transform ordinary spaces into extraordinary living environments.
+              provider of interior plantscaping services. Our team of designers and
+              experienced horticultural technicians work together to transform ordinary
+              spaces into extraordinary living environments.
             </p>
             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
               We believe that plants do more than beautify a space—they improve air
@@ -95,13 +95,13 @@ const About = ({ isFullPage = false }) => {
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="p-6 bg-sage-50 rounded-2xl">
                   <div className="flex justify-center mb-4">
-                    <OrganicIcon Icon={IconSustain} size="w-14 h-14" iconSize="w-8 h-8" />
+                    <OrganicIcon Icon={IconWellbeing} size="w-14 h-14" iconSize="w-8 h-8" />
                   </div>
                   <h4 className="font-display text-xl font-semibold text-forest-800 mb-2">
-                    Sustainability
+                    Wellbeing
                   </h4>
                   <p className="text-gray-600">
-                    Committed to eco-friendly practices and sustainable plant sourcing.
+                    Thoughtfully curated green spaces designed to reduce stress, boost mood, and help people feel their best.
                   </p>
                 </div>
                 <div className="p-6 bg-sage-50 rounded-2xl">

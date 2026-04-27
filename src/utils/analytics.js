@@ -44,7 +44,7 @@ export const analytics = {
   emailClick: () =>
     trackEvent("email_click", {
       event_category: "contact",
-      event_label: "michelle@interiorgreenscapes.com",
+      event_label: "info@interiorgreenscapes.com",
     }),
 
   /** Track contact form submission */

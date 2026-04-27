@@ -54,8 +54,10 @@ const ProductsPage = () => {
   return (
     <main className="pt-24">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-forest-800 to-forest-900 py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative overflow-hidden py-24">
+        <div className="absolute inset-0 bg-cover bg-top bg-no-repeat" style={{ backgroundImage: `url(${import.meta.env.BASE_URL}images/moss-wall-bg.jpeg)` }} />
+        <div className="absolute inset-0 bg-forest-900/70" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <span className="inline-block px-4 py-1 bg-sage-500/20 text-sage-300 rounded-full text-sm font-medium mb-6">
             Shop Plants
           </span>

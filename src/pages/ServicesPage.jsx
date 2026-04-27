@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import CTA from "../components/CTA";
 import { CheckCircle } from "lucide-react";
@@ -9,6 +9,7 @@ import {
   IconHoliday,
   IconFlorals,
   IconMaintenance,
+  IconMossWall,
   OrganicIcon,
 } from "../components/icons/BotanicalIcons";
 
@@ -37,11 +38,24 @@ const servicesDetailed = [
     features: [
       "Custom modular systems",
       "Integrated irrigation",
-      "Indoor and outdoor options",
       "Low maintenance designs",
       "Improves air quality",
     ],
     image: `${import.meta.env.BASE_URL}images/living-wall-large.jpg`,
+  },
+  {
+    icon: IconMossWall,
+    id: "moss-walls",
+    title: "Moss Walls",
+    description:
+      "Transform any wall into a stunning living feature that brings the calm and beauty of nature into your space — with zero maintenance required.",
+    features: [
+      "No watering, no sunlight required",
+      "Creates a calming, nature-inspired focal point that reduces workplace stress",
+      "Naturally absorbs sound, reducing echo and noise pollution",
+      "Adds texture and dimension that flat walls can't achieve",
+    ],
+    image: `${import.meta.env.BASE_URL}images/greenwall-1.jpg`,
   },
   {
     icon: IconAtrium,
@@ -52,9 +66,8 @@ const servicesDetailed = [
     features: [
       "Architectural integration",
       "Large-scale tropical installations",
-      "Water features available",
       "Lighting design",
-      "Ongoing care programs",
+      "Automated watering design and installation",
     ],
     image: `${import.meta.env.BASE_URL}images/atrium-overhead-trees.jpg`,
   },
@@ -67,7 +80,7 @@ const servicesDetailed = [
     features: [
       "Custom themed designs",
       "Professional installation",
-      "Indoor and outdoor displays",
+      "Custom Poinsettia programs",
       "Timely setup and removal",
       "Storage available",
     ],
@@ -75,16 +88,15 @@ const servicesDetailed = [
   },
   {
     icon: IconFlorals,
-    id: "fresh-florals",
-    title: "Fresh Florals",
+    id: "color-program",
+    title: "Color Program",
     description:
-      "Beautiful fresh-cut flower arrangements for offices, lobbies, and events that bring color and elegance to any space.",
+      "Beautiful living arrangements for offices, lobbies, and events that bring color and elegance to any space.",
     features: [
-      "Weekly fresh flower delivery",
+      "Quarterly changeouts",
       "Custom designs for any occasion",
       "Corporate programs available",
-      "Event floral services",
-      "Seasonal arrangements",
+      "Creates a welcoming first impression for clients and visitors",
     ],
     image: `${import.meta.env.BASE_URL}images/tropical-arrangement.jpg`,
   },
@@ -107,25 +119,40 @@ const servicesDetailed = [
 
 const ServicesPage = () => {
   const { hash } = useLocation();
+  const processRef = useRef(null);
+  const [lineVisible, setLineVisible] = useState(false);
+
+  useEffect(() => {
+    const el = processRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setLineVisible(true); observer.disconnect(); } },
+      { threshold: 0.4 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     if (!hash) return;
     const el = document.querySelector(hash);
     if (!el) return;
-    setTimeout(() => {
+    requestAnimationFrame(() => {
       const prev = el.previousElementSibling;
       const top = prev
         ? prev.getBoundingClientRect().bottom + window.scrollY
         : el.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({ top, behavior: "smooth" });
-    }, 100);
+    });
   }, [hash]);
 
   return (
     <main>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-forest-800 to-forest-900 pt-32 pb-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative overflow-hidden pt-32 pb-24">
+        <div className="absolute inset-0 bg-cover bg-top bg-no-repeat" style={{ backgroundImage: `url(${import.meta.env.BASE_URL}images/moss-wall-bg.jpeg)` }} />
+        <div className="absolute inset-0 bg-forest-900/70" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <span className="inline-block px-4 py-1 bg-sage-500/20 text-sage-300 rounded-full text-sm font-medium mb-6">
             Our Services
           </span>
@@ -196,31 +223,34 @@ const ServicesPage = () => {
             </p>
           </div>
 
-          <div className="relative">
-            {/* Solid connecting line behind all cards */}
-            <div className="hidden md:block absolute top-1/2 left-[12.5%] right-[12.5%] h-0.5 bg-sage-300 -translate-y-1/2 z-0" />
+          <div className="relative" ref={processRef}>
+            {/* Animated connecting line */}
+            <div
+              className="hidden md:block absolute top-1/2 left-[12.5%] h-0.5 bg-sage-300 -translate-y-1/2 z-0"
+              style={{ width: lineVisible ? "75%" : "0%", transition: "width 1s cubic-bezier(0.22,1,0.36,1)" }}
+            />
             <div className="grid md:grid-cols-4 gap-8 relative">
               {[
                 {
-                  step: "01",
+                  step: "1",
                   title: "Consultation",
                   description:
                     "We visit your space to understand your vision and needs.",
                 },
                 {
-                  step: "02",
+                  step: "2",
                   title: "Design",
                   description:
                     "Our team creates a custom plant design tailored to your space.",
                 },
                 {
-                  step: "03",
+                  step: "3",
                   title: "Installation",
                   description:
                     "Professional installation with minimal disruption to your business.",
                 },
                 {
-                  step: "04",
+                  step: "4",
                   title: "Maintenance",
                   description:
                     "Ongoing care keeps your plants healthy and beautiful.",
