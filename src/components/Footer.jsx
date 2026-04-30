@@ -12,11 +12,11 @@ const Footer = () => {
   return (
     <footer className="bg-forest-900 text-white">
       {/* Main Footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 md:items-start">
           {/* Brand Column */}
-          <div>
-            <Link to="/" className="flex items-center space-x-3 mb-6">
+          <div className="flex flex-col gap-5">
+            <Link to="/" className="flex items-center space-x-3">
               <img
                 src={`${import.meta.env.BASE_URL}images/logo.png`}
                 alt="Interior Greenscapes"
@@ -31,22 +31,19 @@ const Footer = () => {
                 </span>
               </div>
             </Link>
-            <p className="text-gray-400 leading-relaxed mb-6">
-              Transforming spaces with beautiful plants and living designs.
-              Serving the Treasure Valley for over 30 years.
-            </p>
-            <div className="flex space-x-4">
+            <div className="flex space-x-3">
               <a
                 href="https://facebook.com/interiorgreenscapes"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => analytics.socialClick("facebook")}
-                className="w-10 h-10 bg-forest-800 rounded-lg flex items-center justify-center hover:bg-sage-500 transition-colors"
+                aria-label="Follow on Facebook"
+                className="w-9 h-9 bg-forest-800 rounded-lg flex items-center justify-center hover:bg-sage-500 transition-colors"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
+                  width="18"
+                  height="18"
                   viewBox="0 0 24 24"
                   fill="currentColor"
                 >
@@ -58,12 +55,13 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => analytics.socialClick("instagram")}
-                className="w-10 h-10 bg-forest-800 rounded-lg flex items-center justify-center hover:bg-sage-500 transition-colors"
+                aria-label="Follow on Instagram"
+                className="w-9 h-9 bg-forest-800 rounded-lg flex items-center justify-center hover:bg-sage-500 transition-colors"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
+                  width="18"
+                  height="18"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -81,24 +79,23 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="font-display text-base md:text-lg font-semibold mb-4 md:mb-6">
+            <h4 className="font-display text-base md:text-lg font-semibold mb-4">
               Contact Us
             </h4>
-            <ul className="space-y-3 md:space-y-4">
-              <li className="flex items-start space-x-3">
-                <MapPin className="w-5 h-5 text-sage-400 flex-shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-sm md:text-base text-gray-400">Boise, ID 83705</p>
-                  <p className="text-gray-500 text-xs md:text-sm">Treasure Valley</p>
-                </div>
+            <ul className="space-y-2.5">
+              <li className="flex items-center space-x-3">
+                <MapPin className="w-4 h-4 text-sage-400 flex-shrink-0" />
+                <span className="text-sm text-gray-400">
+                  Boise, ID 83705 <span className="text-gray-500">· Treasure Valley</span>
+                </span>
               </li>
               <li>
                 <a
                   href="tel:2088712588"
                   onClick={() => analytics.phoneClick()}
-                  className="flex items-center space-x-3 text-sm md:text-base text-gray-400 hover:text-sage-400 transition-colors"
+                  className="flex items-center space-x-3 text-sm text-gray-400 hover:text-sage-400 transition-colors"
                 >
-                  <Phone className="w-5 h-5 text-sage-400" />
+                  <Phone className="w-4 h-4 text-sage-400 flex-shrink-0" />
                   <span>(208) 871-2588</span>
                 </a>
               </li>
@@ -106,9 +103,9 @@ const Footer = () => {
                 <a
                   href="mailto:info@interiorgreenscapes.com"
                   onClick={() => analytics.emailClick()}
-                  className="flex items-center space-x-3 text-sm md:text-base text-gray-400 hover:text-sage-400 transition-colors break-all"
+                  className="flex items-center space-x-3 text-sm text-gray-400 hover:text-sage-400 transition-colors break-all"
                 >
-                  <Mail className="w-5 h-5 text-sage-400 flex-shrink-0" />
+                  <Mail className="w-4 h-4 text-sage-400 flex-shrink-0" />
                   <span>info@interiorgreenscapes.com</span>
                 </a>
               </li>
