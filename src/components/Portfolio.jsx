@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { X, ChevronLeft, ChevronRight, Images } from "lucide-react";
+import { analytics } from "../utils/analytics";
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -112,6 +113,7 @@ const Portfolio = ({ isFullPage = false }) => {
     setCurrentIndex(0);
     setActiveCategory(category);
     setIsVisible(false);
+    analytics.portfolioView(category.name);
     requestAnimationFrame(() =>
       requestAnimationFrame(() => setIsVisible(true)),
     );

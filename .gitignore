@@ -25,3 +25,7 @@ dist-ssr
 
 # Source photos
 Interior-greenscapes-pics/
+
+# Local agent scaffolding (impeccable skill, etc.)
+.agents/
+skills-lock.json

@@ -74,6 +74,6 @@
   }
 
   .section-subheading {
-    @apply font-subtitle text-lg text-gray-600 max-w-2xl mx-auto;
+    @apply font-body text-lg text-gray-600 max-w-2xl mx-auto;
   }
 }

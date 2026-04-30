@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { analytics } from '../utils/analytics';
 
 const CTA = () => {
   return (
@@ -23,6 +24,7 @@ const CTA = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center w-[260px] sm:w-auto mx-auto">
           <Link
             to="/contact"
+            onClick={() => analytics.ctaClick("footer_consultation")}
             className="inline-flex w-full sm:w-auto items-center justify-center bg-white text-forest-700 font-medium text-sm py-2.5 px-5 sm:text-base sm:py-3 sm:px-8 rounded-full hover:bg-forest-50 transition-all duration-300 transform hover:scale-105 shadow-xl"
           >
             Schedule Consultation
@@ -30,6 +32,7 @@ const CTA = () => {
           </Link>
           <a
             href="tel:2088712588"
+            onClick={() => analytics.phoneClick()}
             className="inline-flex w-full sm:w-auto items-center justify-center bg-transparent border-2 border-white text-white font-medium text-sm py-2.5 px-5 sm:text-base sm:py-3 sm:px-8 rounded-full hover:bg-white hover:text-forest-700 transition-all duration-300"
           >
             Call (208) 871-2588

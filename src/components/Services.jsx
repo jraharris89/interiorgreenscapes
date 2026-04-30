@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { analytics } from "../utils/analytics";
 import {
   IconPlantscape,
   IconGreenWall,
@@ -112,6 +113,7 @@ const Services = ({ showAll = false }) => {
                 </p>
                 <Link
                   to={`/services#${service.hash}`}
+                  onClick={() => analytics.serviceView(service.title)}
                   className="inline-flex items-center text-sage-500 font-medium hover:text-sage-600 transition-colors group focus:outline-none focus-visible:ring-2 focus-visible:ring-sage-400 focus-visible:ring-offset-2 rounded-sm"
                 >
                   Learn More
