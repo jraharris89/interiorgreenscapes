@@ -29,10 +29,10 @@ const Footer = () => {
   return (
     <footer className="bg-forest-900 text-white">
       {/* Main Footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-[1fr_auto_auto_auto] gap-12 lg:gap-16">
-          {/* Brand Column */}
-          <div className="lg:col-span-1">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <div className="grid grid-cols-2 lg:grid-cols-[1fr_auto_auto_auto] gap-8 md:gap-12 lg:gap-16">
+          {/* Brand Column — full width on mobile/tablet, single col on lg */}
+          <div className="col-span-2 lg:col-span-1">
             <Link to="/" className="flex items-center space-x-3 mb-6">
               <img
                 src={`${import.meta.env.BASE_URL}images/logo.png`}
@@ -98,15 +98,15 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-display text-lg font-semibold mb-6">
+            <h4 className="font-display text-base md:text-lg font-semibold mb-4 md:mb-6">
               Quick Links
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-2.5 md:space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className="text-gray-400 hover:text-sage-400 transition-colors"
+                    className="text-sm md:text-base text-gray-400 hover:text-sage-400 transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -117,15 +117,15 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="font-display text-lg font-semibold mb-6">
+            <h4 className="font-display text-base md:text-lg font-semibold mb-4 md:mb-6">
               Our Services
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-2.5 md:space-y-3">
               {services.map((service) => (
                 <li key={service.name}>
                   <Link
                     to={`/services#${service.hash}`}
-                    className="text-gray-400 hover:text-sage-400 transition-colors"
+                    className="text-sm md:text-base text-gray-400 hover:text-sage-400 transition-colors"
                   >
                     {service.name}
                   </Link>
@@ -134,24 +134,24 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info */}
-          <div>
-            <h4 className="font-display text-lg font-semibold mb-6">
+          {/* Contact Info — full width on mobile/tablet, single col on lg */}
+          <div className="col-span-2 lg:col-span-1">
+            <h4 className="font-display text-base md:text-lg font-semibold mb-4 md:mb-6">
               Contact Us
             </h4>
-            <ul className="space-y-4">
+            <ul className="space-y-3 md:space-y-4">
               <li className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-sage-400 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-gray-400">Boise, ID 83705</p>
-                  <p className="text-gray-500 text-sm">Treasure Valley</p>
+                  <p className="text-sm md:text-base text-gray-400">Boise, ID 83705</p>
+                  <p className="text-gray-500 text-xs md:text-sm">Treasure Valley</p>
                 </div>
               </li>
               <li>
                 <a
                   href="tel:2088712588"
                   onClick={() => analytics.phoneClick()}
-                  className="flex items-center space-x-3 text-gray-400 hover:text-sage-400 transition-colors"
+                  className="flex items-center space-x-3 text-sm md:text-base text-gray-400 hover:text-sage-400 transition-colors"
                 >
                   <Phone className="w-5 h-5 text-sage-400" />
                   <span>(208) 871-2588</span>
@@ -161,9 +161,9 @@ const Footer = () => {
                 <a
                   href="mailto:info@interiorgreenscapes.com"
                   onClick={() => analytics.emailClick()}
-                  className="flex items-center space-x-3 text-gray-400 hover:text-sage-400 transition-colors"
+                  className="flex items-center space-x-3 text-sm md:text-base text-gray-400 hover:text-sage-400 transition-colors break-all"
                 >
-                  <Mail className="w-5 h-5 text-sage-400" />
+                  <Mail className="w-5 h-5 text-sage-400 flex-shrink-0" />
                   <span>info@interiorgreenscapes.com</span>
                 </a>
               </li>

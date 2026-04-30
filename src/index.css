@@ -31,9 +31,24 @@
   animation: growLine 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
+/* Vertical process line for mobile */
+.process-line-v {
+  transform: scaleY(0);
+  transform-origin: top center;
+}
+@keyframes growLineV {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+.process-line-v-grow {
+  animation: growLineV 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .process-line { transform: scaleX(1); }
   .process-line-grow { animation: none; }
+  .process-line-v { transform: scaleY(1); }
+  .process-line-v-grow { animation: none; }
 }
 
 /* Scroll-reveal animation for service rows */

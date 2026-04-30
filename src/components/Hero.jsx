@@ -17,12 +17,12 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="animate-fade-in-up">
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-medium text-white mb-8 leading-tight mt-8">
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-medium text-white mb-6 leading-tight mt-8">
             Bring Nature
-            <span className="block text-sage-300 mt-2">Into Your Space</span>
+            <span className="block text-sage-300">Into Your Space</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto mb-10 leading-relaxed tracking-wide">
+          <p className="text-xl md:text-xl text-gray-100 max-w-3xl mx-auto mb-10 leading-relaxed">
             Professional interior plantscaping and green wall design for
             commercial and residential spaces throughout the Treasure Valley.
           </p>

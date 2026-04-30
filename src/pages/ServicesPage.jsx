@@ -120,6 +120,7 @@ const servicesDetailed = [
 const ServicesPage = () => {
   const { hash } = useLocation();
   const lineRef = useRef(null);
+  const mobileLineRef = useRef(null);
 
   useEffect(() => {
     const rows = document.querySelectorAll("[data-service-row]");
@@ -153,6 +154,22 @@ const ServicesPage = () => {
         }
       },
       { threshold: 0 }
+    );
+    observer.observe(line);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const line = mobileLineRef.current;
+    if (!line) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          line.classList.add("process-line-v-grow");
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "-30% 0px 0px 0px", threshold: 0 }
     );
     observer.observe(line);
     return () => observer.disconnect();
@@ -250,11 +267,16 @@ const ServicesPage = () => {
           </div>
 
           <div className="relative">
-            {/* Animated connecting line */}
+            {/* Animated connecting line — desktop horizontal */}
             <div
               ref={lineRef}
               className="process-line hidden md:block absolute left-[12.5%] z-0 h-0.5 bg-sage-300"
               style={{ top: "calc(50% - 1px)", width: "75%" }}
+            />
+            {/* Animated connecting line — mobile vertical */}
+            <div
+              ref={mobileLineRef}
+              className="process-line-v block md:hidden absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 z-0 bg-sage-300"
             />
             <div className="grid md:grid-cols-4 gap-8 relative">
               {[
