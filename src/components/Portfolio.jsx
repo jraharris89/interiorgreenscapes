@@ -202,31 +202,21 @@ const Portfolio = ({ isFullPage = false }) => {
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 style={cat.imageStyle}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest-900/95 via-forest-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute inset-x-0 bottom-0 p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
-                <span className="text-sage-200 text-sm font-medium mb-1">
-                  {cat.name}
-                </span>
-                <h3 className="text-white text-xl font-display font-semibold mb-2 drop-shadow-lg">
-                  {cat.title}
-                </h3>
-                <p className="text-gray-200 text-sm line-clamp-2 drop-shadow-lg">
-                  {cat.description}
-                </p>
-                <div className="mt-4 text-sage-300 text-sm font-medium">
-                  View Gallery ({cat.gallery.length} photos)
-                </div>
-              </div>
-              {/* Always-visible gallery badge */}
-              <div className="absolute top-3 right-3 bg-forest-900/60 backdrop-blur-sm rounded-full px-2.5 py-1 flex items-center gap-1.5 group-hover:opacity-0 transition-opacity duration-300">
+              {/* Subtle darkening on hover for a sense of activation */}
+              <div className="absolute inset-0 bg-forest-900/15 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              {/* Photo count badge */}
+              <div className="absolute top-3 right-3 bg-forest-900/60 backdrop-blur-sm rounded-full px-2.5 py-1 flex items-center gap-1.5">
                 <Images className="w-3.5 h-3.5 text-sage-300" />
                 <span className="text-sage-300 text-xs font-medium">{cat.gallery.length}</span>
               </div>
-              {/* Always-visible label */}
-              <div className="absolute inset-x-0 bottom-0 p-3 md:p-4 bg-gradient-to-t from-forest-900/80 to-transparent group-hover:opacity-0 transition-opacity duration-300">
-                <h3 className="text-white text-sm md:text-lg font-display font-semibold drop-shadow-lg leading-snug">
-                  {cat.title}
-                </h3>
+              {/* Persistent title label */}
+              <div className="absolute inset-x-0 bottom-0 p-3 md:p-4 bg-gradient-to-t from-forest-900/85 to-transparent">
+                <div className="flex items-end justify-between gap-2">
+                  <h3 className="text-white text-sm md:text-lg font-display font-semibold drop-shadow-lg leading-snug">
+                    {cat.title}
+                  </h3>
+                  <ChevronRight className="hidden md:block w-5 h-5 text-sage-300 flex-shrink-0 mb-0.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                </div>
                 <p className="text-sage-300/90 text-xs mt-0.5 md:hidden">{cat.gallery.length} photos</p>
               </div>
             </div>
