@@ -9,30 +9,13 @@ const Footer = () => {
 
   const currentYear = new Date().getFullYear();
 
-  const quickLinks = [
-    { name: "Home", path: "/" },
-    { name: "Services", path: "/services" },
-    { name: "Portfolio", path: "/portfolio" },
-    { name: "About Us", path: "/about" },
-    { name: "Contact", path: "/contact" },
-  ];
-
-  const services = [
-    { name: "Interior Plantscaping", hash: "interior-plantscaping" },
-    { name: "Green Walls", hash: "green-walls" },
-    { name: "Atrium Design", hash: "atrium-design" },
-    { name: "Holiday Decorations", hash: "holiday-decorations" },
-    { name: "Color Program", hash: "color-program" },
-    { name: "Plant Maintenance", hash: "plant-maintenance" },
-  ];
-
   return (
     <footer className="bg-forest-900 text-white">
       {/* Main Footer */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="grid grid-cols-2 lg:grid-cols-[1fr_auto_auto_auto] gap-8 md:gap-12 lg:gap-16">
-          {/* Brand Column — full width on mobile/tablet, single col on lg */}
-          <div className="col-span-2 lg:col-span-1">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
+          {/* Brand Column */}
+          <div>
             <Link to="/" className="flex items-center space-x-3 mb-6">
               <img
                 src={`${import.meta.env.BASE_URL}images/logo.png`}
@@ -96,46 +79,8 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Contact Info */}
           <div>
-            <h4 className="font-display text-base md:text-lg font-semibold mb-4 md:mb-6">
-              Quick Links
-            </h4>
-            <ul className="space-y-2.5 md:space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.path}>
-                  <Link
-                    to={link.path}
-                    className="text-sm md:text-base text-gray-400 hover:text-sage-400 transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h4 className="font-display text-base md:text-lg font-semibold mb-4 md:mb-6">
-              Our Services
-            </h4>
-            <ul className="space-y-2.5 md:space-y-3">
-              {services.map((service) => (
-                <li key={service.name}>
-                  <Link
-                    to={`/services#${service.hash}`}
-                    className="text-sm md:text-base text-gray-400 hover:text-sage-400 transition-colors"
-                  >
-                    {service.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact Info — full width on mobile/tablet, single col on lg */}
-          <div className="col-span-2 lg:col-span-1">
             <h4 className="font-display text-base md:text-lg font-semibold mb-4 md:mb-6">
               Contact Us
             </h4>
